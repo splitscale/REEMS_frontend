@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { LogoutButton } from './logoutButton';
 
 function NavBar() {
   return (
@@ -12,7 +13,7 @@ function NavBar() {
 
           <Nav className="me-auto">
             <Nav.Link href="/home" className='fs-5 ms-5'> Home </Nav.Link>
-            <Nav.Link href="/" className='fs-5 ms-5'> Log-out </Nav.Link>
+            <LogoutButton />
           </Nav>
 
         </Container>

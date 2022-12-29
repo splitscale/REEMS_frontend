@@ -1,30 +1,27 @@
-
-import Head from "next/head";
-import User from "../User/user";
-import axios from "axios";
-import { useState } from "react";
+import Head from 'next/head';
+import { useState } from 'react';
+import { registerInteractor } from '../lib/auth/registerInteractor';
+import { useRouter } from 'next/router';
+import { UserRequestBuilder } from '../lib/user/UserRequestBuilder';
 
 function Register() {
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
-  const url = "http://localhost:3000/api/user/create";
-
-  const register = async(event: any) => {
+  const register = async (event: any) => {
     event.preventDefault();
 
-    const registerUser: User = {
-      username,
-      password
-    };
+    let isSuccess: boolean = await registerInteractor(
+      UserRequestBuilder(username, password)
+    );
 
-    try {
-      const res = await axios.post(url, registerUser);
-      console.log("Post success", res.data);
-
-    } catch (error) {
-      console.log("Error", error);
+    if (!isSuccess) {
+      alert('invalid username or password');
+    } else {
+      router.push('/');
+      setUsername('');
+      setPassword('');
     }
   };
 
@@ -36,16 +33,17 @@ function Register() {
         <link rel="icon" href="/main-logo.png" />
       </Head>
 
-      <img src="logo.png"
+      <img
+        src="logo.png"
         className="img-thumbnail w-25 h-25 border border-white"
         alt="logo.png"
       />
 
       <div className="row">
         <div className="col-sm-6 col-md-5 m-auto">
-          
           <div className="d-flex justify-content-center">
-            <img src="user-icon.png"
+            <img
+              src="user-icon.png"
               className="img-thumbnail border border-white w-24 h-24"
               alt="user-icon.png"
             />
@@ -79,8 +77,9 @@ function Register() {
             <div>
               <button
                 type="submit"
-                className="btn btn-info mt-5 w-100 border border-dark">
-                  Register
+                className="btn btn-info mt-5 w-100 border border-dark"
+              >
+                Register
               </button>
             </div>
           </form>
@@ -91,4 +90,3 @@ function Register() {
 }
 
 export default Register;
-
