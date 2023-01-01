@@ -19,7 +19,7 @@ export function LogoutButton() {
   };
 
   return (
-    <button onClick={logout}>Logout</button>
+    <button className='fs-5 ms-5 fw-bold ' onClick={logout}>Logout</button>
   );
 }
 

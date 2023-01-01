@@ -7,16 +7,14 @@ function NavBar() {
   return (
     <>
       <Navbar className='bg-orange-500'>
-        <Container>
 
-          <Navbar.Brand className='fs-1 fw-bold text-light'> Fordastore </Navbar.Brand>
+          <Navbar.Brand className='fs-1 ms-5 fw-bold text-light'> Fordastore </Navbar.Brand>
 
           <Nav className="me-auto">
-            <Nav.Link href="/home" className='fs-5 ms-5'> Home </Nav.Link>
+            <Nav.Link href="/home" className='fs-5 ms-5 fw-bold text-dark'> Home </Nav.Link>
             <LogoutButton />
           </Nav>
 
-        </Container>
       </Navbar>
     </>
   );

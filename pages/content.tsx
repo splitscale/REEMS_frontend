@@ -1,6 +1,6 @@
 import Head from "next/head"
 import NavBar from "../components/navBar"
-import ListOfLink from "../components/listOfLink"
+import ListOfLink from "../components/listOfContainer"
 
 function Content() {
   return (
