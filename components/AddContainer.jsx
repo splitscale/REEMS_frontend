@@ -1,9 +1,11 @@
-import e from "cors";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import ListOfContainer from "../components/listOfContainer";
+
 
 function AddContainer() {
+  const CONTAINER_API_BASE_URL = "http://34.143.216.186:28762/api/containers"
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -12,18 +14,32 @@ function AddContainer() {
     title: "",
   });
 
+  const [responseContainer, setResponseContainer] = useState({
+    title: "",
+  }
+  )
+
   const handleChange = (event) => {
     const value = event.target.value;
     setContainer({ ...container, [event.target.name]: value });
   };
 
-  const saveUser = async () => {
-    const response = await fetch();
+  const saveContainer = async () => {
+    const response = await fetch(CONTAINER_API_BASE_URL,{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify(container)
+    });
+    if(!response.ok) {
+      throw new Error("can't add container");
+    }
+    const _container = await  response.json()
+    setResponseContainer(_container);
   }
 
-  const reset = async () => {
-    
-  }
 
   return (
     <>
@@ -48,16 +64,17 @@ function AddContainer() {
           ></input>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={saveUser}>
+          <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={reset}>
+          <Button variant="primary" onClick={saveContainer}>
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
+      <ListOfContainer container={responseContainer}/>
     </>
   );
 }
-
+ 
 export default AddContainer;

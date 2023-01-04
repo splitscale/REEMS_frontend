@@ -6,14 +6,15 @@ import { LogoutButton } from './logoutButton';
 function NavBar() {
   return (
     <>
-      <Navbar className='bg-orange-500'>
+      <Navbar className=' flex items-center justify-between flex-wrap bg-orange-500 '>
+      <Container>
 
-          <Navbar.Brand className='fs-1 ms-5 fw-bold text-light'> Fordastore </Navbar.Brand>
-
+          <Navbar.Brand className='fs-1 fw-bold text-light '> Fordastore </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/home" className='fs-5 ms-5 fw-bold text-dark'> Home </Nav.Link>
-            <LogoutButton />
+            <Nav.Link href="/home" className='fs-5 ms-5 text-light'> Home </Nav.Link>
+            <Nav.Link href="/" className='fs-5 ms-5 text-light'> Log-out </Nav.Link>
           </Nav>
+          </Container>
 
       </Navbar>
     </>
