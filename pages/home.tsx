@@ -2,7 +2,6 @@
 import Head from "next/head"
 import NavBar from "../components/navBar"
 import AddContainer from "../components/AddContainer"
-import ListOfContainer from "../components/listOfContainer";
 
 
 function Home() {
@@ -17,7 +16,6 @@ function Home() {
       <NavBar />
       <main>
         <AddContainer/>
-        <ListOfContainer/>
       </main>
 
     </div>
