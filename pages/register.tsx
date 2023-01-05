@@ -1,27 +1,32 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import { registerInteractor } from '../lib/auth/registerInteractor';
 import { useRouter } from 'next/router';
-import { UserRequestBuilder } from '../lib/user/UserRequestBuilder';
+import { User } from '../lib/user/User';
+import { UserRequest } from '../lib/user/UserRequest';
+import { axiosInstance } from '../lib/apiInteractor/apiInstance';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
+  const userRequest = {
+    username: username,
+    password: password
+  }
   const register = async (event: any) => {
     event.preventDefault();
 
-    let isSuccess: boolean = await registerInteractor(
-      UserRequestBuilder(username, password)
-    );
-
-    if (!isSuccess) {
-      alert('invalid username or password');
-    } else {
-      router.push('/');
-      setUsername('');
-      setPassword('');
+    try {
+      const res = await axiosInstance.post('/auth/register',userRequest);
+        console.log(res.data)
+        router.push('/');
+        setUsername('');
+        setPassword('');
+  
+    } catch (error: any) {
+        console.error(error)
+        alert('invalid username or password');
     }
   };
 

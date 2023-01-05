@@ -1,18 +1,39 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
-import { Container } from "../lib/container/Container";
+import { UrlContainer } from "../lib/container/UrlContainer";
+
 // import EditContainer from "../components/EditContainer";
 
+export function ContainerRow({container}: {container: UrlContainer}) {
 
-export function ContainerRow({container, deleteContainer}:{container: Container, deleteContainer: Function}) {
   return (
-    <tr key={container.containerID}>
-    <th className="text-left font-medium text-gray-500 uppercase tracking-wide"> {container.name} </th>
-    {/* <th className="text-right"> <button className="bg-blue-500 text-white 
-    font-bold py-2 px-4 border-b-4 border-blue-700" onClick={(e, id) => editContainer(e, container.containerId)}> 
-    <i className="bi bi-pencil-square">Edit</i>  </button> </th> */}
-    <th className="text-right"> <button className="bg-blue-500 text-white 
-    font-bold py-2 px-4 border-b-4 border-blue-700" onClick={(e) => deleteContainer(e, container.containerID)}> 
-    <i className="bi bi-trash">Delete</i>  </button> </th>   </tr>
-  )
+    <tr
+      className="border-b border-current uppercase"
+      key={container.id}
+    >
+      <td className="font-sans px-6 py-3 text-center">
+        <Link
+          href="/content/[containerId]"
+          as={`/content/${container.id}`}>
+          {container.title}
+        </Link>
+      </td>
+      <td>
+        {/* <button
+          className="btn btn-info py-2"
+          onClick={(e, id) => editContainer(e, container.containerId)}>
+          <i className="bi bi-pencil-square">Edit</i>
+        </button> */}
+      </td>
+      <td>
+        <button
+          className="btn btn-danger py-2"
+          // onClick={(e) => deleteContainer(e, container.id)}
+        >
+          <i className="bi bi-trash">Delete</i>
+        </button>
+      </td>
+    </tr>
+  );
 }
-
