@@ -20,16 +20,14 @@ export function ContainerRow({container}: {container: UrlContainer}) {
         </Link>
       </td>
       <td>
-        {/* <button
-          className="btn btn-info py-2"
-          onClick={(e, id) => editContainer(e, container.containerId)}>
+        <button className="btn btn-info py-2">
           <i className="bi bi-pencil-square">Edit</i>
-        </button> */}
+        </button>
       </td>
       <td>
         <button
           className="btn btn-danger py-2"
-          // onClick={(e) => deleteContainer(e, container.id)}
+          // onClick={() => DeleteContainer()}
         >
           <i className="bi bi-trash">Delete</i>
         </button>

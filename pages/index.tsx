@@ -1,35 +1,35 @@
-import Head from "next/head";
-import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
-import { axiosInstance } from "../lib/apiInteractor/apiInstance";
-import { parseCookies, setCookie } from "nookies";
+import Head from 'next/head';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
+import { axiosInstance } from '../lib/apiInteractor/apiInstance';
+import { parseCookies, setCookie } from 'nookies';
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
 
   const userRequest = {
     username: username,
-    password: password
-  }
+    password: password,
+  };
 
   const login = async (event: any) => {
     event.preventDefault();
 
     try {
-      const res = await axiosInstance.post("/auth/login", userRequest);
-      
+      const res = await axiosInstance.post('/auth/login', userRequest);
+
       console.log(res.data);
       console.log(res.headers);
 
-      let authToken = res.headers["Authorization"];
+      let authToken = res.headers['authorization'];
 
-      console.log(authToken)
-    
-      if(authToken) {
+      console.log(authToken);
+
+      if (authToken) {
         setCookie(null, 'Authorization', authToken);
         setCookie(null, 'uid', res.data.uid);
         setCookie(null, 'username', res.data.username);
@@ -39,11 +39,10 @@ function Login() {
         const cookies = parseCookies();
         console.log({ cookies });
       }
-      router.push("/home");
-    
+      router.push('/home');
     } catch (error: any) {
-      console.error(error);
-      alert("invalid username or password");
+      console.error(error.message);
+      alert('invalid username or password');
     }
   };
 

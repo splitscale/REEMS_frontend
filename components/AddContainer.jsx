@@ -1,42 +1,35 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import ListOfContainer from "../components/listOfContainer";
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import ListOfContainer from '../components/listOfContainer';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
+import { axiosInstance } from '../lib/apiInteractor/apiInstance';
 
 function AddContainer() {
-  const URL = "http://34.143.216.186:28762/api/containers"
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [container, setContainer] = useState({
-    title: "",
-  });
+  const [name, setName] = useState('');
 
-  const [responseContainer, setResponseContainer] = useState({
-    title: "",
-  }
-  )
-
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setContainer({ ...container, [event.target.name]: value });
+  const handleChange = (nameStr) => {
+    setName(nameStr);
   };
 
   const saveContainer = async () => {
     try {
-      console.log(Cookies.get("authorization"));
-      const response = await axios.post(URL, {
+      const response = await axiosInstance.post('/containers', {
         headers: {
-          'authorization': Cookies.get("authorization"),
+          Authorization: Cookies.get('Authorization'),
         },
-        data: container,
+        data: {
+          uid: Cookies.get('uid'),
+          name: name,
+        },
       });
-      setResponseContainer(response.data);
-      console.log(response.data)
+
+      console.log(response.data);
     } catch (err) {
       if (err.response) {
         // The client was given an error response (5xx, 4xx)
@@ -55,12 +48,14 @@ function AddContainer() {
 
   return (
     <>
-    <div className="flex flex-col justify-center items-center mb-4">
-      <Button  className="fs-5 mt-8 mb-2   w-96 py-1 bg-gradient-to-r
-       from-pink-400 to-yellow-500 hover:from-green-500 hover:to-blue-500 ..." 
-      onClick={handleShow}>
-        Add Container
-      </Button>
+      <div className="flex flex-col justify-center items-center mb-4">
+        <Button
+          className="fs-5 mt-8 mb-2   w-96 py-1 bg-gradient-to-r
+       from-pink-400 to-yellow-500 hover:from-green-500 hover:to-blue-500 ..."
+          onClick={handleShow}
+        >
+          Add Container
+        </Button>
       </div>
 
       <Modal show={show} onHide={handleClose}>
@@ -73,9 +68,9 @@ function AddContainer() {
           </label>
           <input
             type="text"
-            name="title"
-            value={container.title}
-            onChange={(e) => handleChange(e)}
+            name="name"
+            value={name}
+            onChange={(e) => handleChange(e.target.value)}
             className="h-10 w-96 border mt-2 px-2 py-2"
           ></input>
         </Modal.Body>
@@ -88,9 +83,9 @@ function AddContainer() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ListOfContainer container={responseContainer}/>
+      <ListOfContainer />
     </>
   );
 }
- 
+
 export default AddContainer;
