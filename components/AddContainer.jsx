@@ -57,7 +57,7 @@ function AddContainer() {
           </label>
           <input
             type="text"
-            name="firstName"
+            name="title"
             value={container.title}
             onChange={(e) => handleChange(e)}
             className="h-10 w-96 border mt-2 px-2 py-2"
