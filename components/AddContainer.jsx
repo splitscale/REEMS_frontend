@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ListOfContainer from "../components/listOfContainer";
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 function AddContainer() {
-  const CONTAINER_API_BASE_URL = "http://34.143.216.186:28762/api/containers"
+  const URL = "http://34.143.216.186:28762/api/containers"
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -25,20 +27,31 @@ function AddContainer() {
   };
 
   const saveContainer = async () => {
-    const response = await fetch(CONTAINER_API_BASE_URL,{
-      method: "POST",
-      headers:{
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      },
-      body: JSON.stringify(container)
-    });
-    if(!response.ok) {
-      throw new Error("can't add container");
+    try {
+      console.log(Cookies.get("authorization"));
+      const response = await axios.post(URL, {
+        headers: {
+          'authorization': Cookies.get("authorization"),
+        },
+        data: container,
+      });
+      setResponseContainer(response.data);
+      console.log(response.data)
+    } catch (err) {
+      if (err.response) {
+        // The client was given an error response (5xx, 4xx)
+        console.log(err.response.data);
+        console.log(err.response.status);
+        console.log(err.response.headers);
+      } else if (err.request) {
+        // The client never received a response, and the request was never left
+        console.log(err.request);
+      } else {
+        // Anything else
+        console.log('Error', err.message);
+      }
     }
-    const _container = await  response.json()
-    setResponseContainer(_container);
-  }
+  };
 
 
   return (
