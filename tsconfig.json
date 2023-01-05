@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/addContainer.js", "components/ContainerList.jsx", "components/listOfContainer.jsx", "components/listOfContainer.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/addContainer.js", "components/ContainerList.tsx", "components/listOfContainer.tsx", "components/listOfContainer.tsx"],
   "exclude": ["node_modules"]
 }
