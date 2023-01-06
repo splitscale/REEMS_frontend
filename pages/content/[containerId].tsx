@@ -2,7 +2,7 @@ import { Head } from 'next/document';
 import { ListOfLink } from '../../components/ListOfLink';
 import NavBar from '../../components/navBar';
 
-export function content() {
+export default function content() {
   return (
     <div>
       <Head>
