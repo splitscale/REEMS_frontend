@@ -2,7 +2,7 @@ import { Head } from 'next/document';
 import { ListOfLink } from '../../components/ListOfLink';
 import NavBar from '../../components/navBar';
 
-function content() {
+export function content() {
   return (
     <div>
       <Head>
@@ -16,5 +16,3 @@ function content() {
     </div>
   );
 }
-
-export default content;
