@@ -1,6 +1,6 @@
 import { getAuthCookie } from './getAuthCookie';
 import { getUidCookie } from './getUidCookie';
-import { StoredCookies } from './storedCookies';
+import { StoredCookies } from './StoredCookies';
 
 export const cookies: StoredCookies = {
   authBearer: getAuthCookie,
