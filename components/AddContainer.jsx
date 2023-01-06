@@ -19,9 +19,7 @@ function AddContainer() {
   const handleShow = () => setShow(true);
   const [name, setName] = useState('');
 
-  const handleChange = (nameStr) => {
-    setName(nameStr);
-  };
+
 
   const saveContainer = async () => {
     const config = {
@@ -36,7 +34,6 @@ function AddContainer() {
     console.log(config)
     try {
       const response = await axiosInstance.post('/containers', config );
-
       console.log(response.data);
       if(response.data){
         router.push('/');
@@ -82,7 +79,7 @@ function AddContainer() {
             type="text"
             name="name"
             value={name}
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             className="h-10 w-96 border mt-2 px-2 py-2"
           ></input>
         </Modal.Body>

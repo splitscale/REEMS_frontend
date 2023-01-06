@@ -1,6 +1,7 @@
 import Head from "next/head"
 import NavBar from "../../components/navBar";
-import AddContainer from "../../components/AddLink";
+import AddLInk from "../../components/AddLink";
+import {ListOfLink} from "../../components/listOflink";
 
 
 function content() {
@@ -13,7 +14,7 @@ function content() {
       </Head>
       <NavBar />
       <main>
-        <AddContainer/>
+        <ListOfLink/>
       </main>
 
     </div>
