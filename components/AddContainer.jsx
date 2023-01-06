@@ -5,9 +5,15 @@ import ListOfContainer from '../components/listOfContainer';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { axiosInstance } from '../lib/apiInteractor/apiInstance';
+import { getUidCookie } from '../lib/apiInteractor/cookies/getUidCookie';
+import { getAuthCookie } from '../lib/apiInteractor/cookies/getAuthCookie';
+import { useRouter } from 'next/router';
+
 
 function AddContainer() {
   const [show, setShow] = useState(false);
+  const router = useRouter();
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,18 +24,24 @@ function AddContainer() {
   };
 
   const saveContainer = async () => {
+    const config = {
+      headers: {
+        authorization: getAuthCookie(),
+      },
+      data: {
+        uid: getUidCookie(),
+        name: name,
+      },
+    }
+    console.log(config)
     try {
-      const response = await axiosInstance.post('/containers', {
-        headers: {
-          Authorization: Cookies.get('Authorization'),
-        },
-        data: {
-          uid: Cookies.get('uid'),
-          name: name,
-        },
-      });
+      const response = await axiosInstance.post('/containers', config );
 
       console.log(response.data);
+      if(response.data){
+        router.push('/');
+      }
+
     } catch (err) {
       if (err.response) {
         // The client was given an error response (5xx, 4xx)

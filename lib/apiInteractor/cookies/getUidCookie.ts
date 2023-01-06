@@ -1,3 +1,3 @@
 import Cookies from 'js-cookie';
 
-export const getUidCookie = () => Cookies.get('uid');
+export const getUidCookie = () => localStorage.getItem('uid');

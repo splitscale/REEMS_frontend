@@ -30,14 +30,12 @@ function Login() {
       console.log(authToken);
 
       if (authToken) {
-        setCookie(null, 'Authorization', authToken);
-        setCookie(null, 'uid', res.data.uid);
-        setCookie(null, 'username', res.data.username);
+        
+        localStorage.setItem('Authorization', authToken)
+        localStorage.setItem('uid',  res.data.uid)
+        localStorage.setItem('username', res.data.username)
 
-        // Simply omit context parameter.
-        // Parse
-        const cookies = parseCookies();
-        console.log({ cookies });
+
       }
       router.push('/home');
     } catch (error: any) {

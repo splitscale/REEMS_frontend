@@ -1,3 +1,3 @@
 import Cookies from 'js-cookie';
 
-export const getAuthCookie = () => Cookies.get('Authorization');
+export const getAuthCookie = () =>  localStorage.getItem('Authorization');

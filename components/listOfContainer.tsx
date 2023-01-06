@@ -6,6 +6,8 @@ import { UrlContainer } from '../lib/container/UrlContainer';
 import { getUrlContainerList } from '../lib/container/get/getUrlContainerList';
 import { UrlContainerBuilder } from '../lib/container/UrlContainerBuilder';
 import { axiosInstance } from '../lib/apiInteractor/apiInstance';
+import { getUidCookie } from '../lib/apiInteractor/cookies/getUidCookie';
+import { getAuthCookie } from '../lib/apiInteractor/cookies/getAuthCookie';
 
 function listOfContainer() {
   const [containers, setContainers] = useState<UrlContainer[]>([]);
@@ -14,12 +16,12 @@ function listOfContainer() {
   const [responseContainer, setResponseContainer] = useState(null);
 
   const getUrlContainerList = async (): Promise<UrlContainer[]> => {
-    const uid = Cookies.get('uid');
+    const uid = getUidCookie();
 
     try {
       const response = await axiosInstance.get(`/containers?uid=${uid}`, {
         headers: {
-          Authorization: Cookies.get('Authorization'),
+          Authorization: getAuthCookie(),
         },
       });
 
@@ -45,9 +47,10 @@ function listOfContainer() {
     fetchData();
   }, [containerId]);
 
-  // const deleteContainer = () => {
-  //   return;
-  // };
+  const deleteContainer = () => {
+    
+    return;
+  };
 
   // const editContainer = (e) => {
   //   e.preventDefault();
@@ -64,6 +67,7 @@ function listOfContainer() {
   //   const _container = await repsonse.json;
   //   reset(e);
   // };
+
 
   return (
     <div className="flex flex-col justify-center items-center">
