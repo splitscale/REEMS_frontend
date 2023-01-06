@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { User } from '../lib/user/User';
-import { UserRequest } from '../lib/user/UserRequest';
 import { axiosInstance } from '../lib/apiInteractor/apiInstance';
 
 function Register() {
@@ -12,21 +10,20 @@ function Register() {
 
   const userRequest = {
     username: username,
-    password: password
-  }
+    password: password,
+  };
   const register = async (event: any) => {
     event.preventDefault();
 
     try {
-      const res = await axiosInstance.post('/auth/register',userRequest);
-        console.log(res.data)
-        router.push('/');
-        setUsername('');
-        setPassword('');
-  
+      const res = await axiosInstance.post('/auth/register', userRequest);
+      console.log(res.data);
+      router.push('/');
+      setUsername('');
+      setPassword('');
     } catch (error: any) {
-        console.error(error)
-        alert('invalid username or password');
+      console.error(error);
+      alert('invalid username or password');
     }
   };
 

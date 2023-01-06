@@ -2,9 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
 import { axiosInstance } from '../lib/apiInteractor/apiInstance';
-import { parseCookies, setCookie } from 'nookies';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -30,12 +28,9 @@ function Login() {
       console.log(authToken);
 
       if (authToken) {
-        
-        localStorage.setItem('Authorization', authToken)
-        localStorage.setItem('uid',  res.data.uid)
-        localStorage.setItem('username', res.data.username)
-
-
+        localStorage.setItem('Authorization', authToken);
+        localStorage.setItem('uid', res.data.uid);
+        localStorage.setItem('username', res.data.username);
       }
       router.push('/home');
     } catch (error: any) {
