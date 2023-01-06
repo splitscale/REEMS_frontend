@@ -10,7 +10,7 @@ import { getAuthCookie } from '../lib/apiInteractor/cookies/getAuthCookie';
 import { useRouter } from 'next/router';
 
 
-function AddContainer() {
+function AddLink() {
   const [show, setShow] = useState(false);
   const router = useRouter();
 
@@ -92,9 +92,9 @@ function AddContainer() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ListOfContainer />
+      <ListOfLink />
     </>
   );
 }
 
-export default AddContainer;
+export default AddLink;

@@ -8,7 +8,7 @@ import { axiosInstance } from '../lib/apiInteractor/apiInstance';
 import { getUidCookie } from '../lib/apiInteractor/cookies/getUidCookie';
 import { getAuthCookie } from '../lib/apiInteractor/cookies/getAuthCookie';
 
-function listOfContainer() {
+export function ListOfLink() {
   const [containers, setContainers] = useState<UrlContainer[]>([]);
   const [loading, setloading] = useState(true);
   const [containerId, setcontainerId] = useState(null);
@@ -82,8 +82,7 @@ function listOfContainer() {
         <thead className="bg-gradient-to-b from-yellow-500 to-orange-500 text-white">
           <tr>
             <th scope="col" className="px-6 py-3">
-              {' '}
-              CONTAINER TITLE{' '}
+              Links
             </th>
             <th scope="col" className="px-6 py-3">
               <i className="bi bi-pencil-square"> Edit </i>
@@ -111,4 +110,3 @@ function listOfContainer() {
   );
 }
 
-export default listOfContainer;
