@@ -11,6 +11,7 @@ pipeline {
         sh 'npm -v'
         sh 'git --version'
         sh 'docker -v'
+        sh 'export NODE_ENV=production'
       }
         }
 
@@ -26,7 +27,7 @@ pipeline {
           sh 'npm install'
         }
       }
-        }
+      }
 
         stage('build') {
       steps {
