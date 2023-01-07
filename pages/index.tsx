@@ -1,41 +1,39 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
-import { axiosInstance } from '../lib/apiInteractor/apiInstance';
+import { loginInteractor } from '../lib/auth/loginInteractor';
+import { User } from '../lib/user/User';
+import Image from 'next/image';
 
-function Login() {
+export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const userRequest = {
-    username: username,
-    password: password,
-  };
-
-  const login = async (event: any) => {
+  const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
 
-    try {
-      const res = await axiosInstance.post('/auth/login', userRequest);
+    console.debug('username: ' + username);
+    console.debug('password: ' + password);
 
-      console.log(res.data);
-      console.log(res.headers);
+    const res = await loginInteractor({ username, password });
 
-      let authToken = res.headers['authorization'];
+    if (res.ok) {
+      const authToken = res.headers.get('authorization');
+      const user = (await res.json()) as User;
 
-      console.log(authToken);
+      console.log('User logged in: ', user);
+      console.log('Authorization: ', authToken);
 
-      if (authToken) {
+      if (authToken && user) {
         localStorage.setItem('Authorization', authToken);
-        localStorage.setItem('uid', res.data.uid);
-        localStorage.setItem('username', res.data.username);
+        localStorage.setItem('uid', user.uid);
       }
+
       router.push('/home');
-    } catch (error: any) {
-      console.error(error.message);
-      alert('invalid username or password');
+    } else {
+      alert('Login failed! Please try again: ' + res.status);
     }
   };
 
@@ -47,19 +45,23 @@ function Login() {
         <link rel="icon" href="/main-logo.png" />
       </Head>
 
-      <img
-        src="logo.png"
+      <Image
+        src="/logo.png"
         className="img-thumbnail w-25 h-25 border border-white"
         alt="logo.png"
+        width={500}
+        height={500}
       />
 
       <div className="row">
         <div className="col-sm-6 col-md-5 m-auto">
           <div className="d-flex justify-content-center">
-            <img
-              src="user-icon.png"
+            <Image
+              src="/user-icon.png"
               className="img-thumbnail border border-white w-24 h-24"
               alt="user-icon.png"
+              width={300}
+              height={300}
             />
           </div>
 
@@ -67,7 +69,7 @@ function Login() {
             Sign in
           </div>
 
-          <form onSubmit={login}>
+          <form onSubmit={handleLogin}>
             <div>
               <input
                 className="form-control mt-5 border border-dark"
@@ -99,7 +101,7 @@ function Login() {
 
             <div className="text-center mt-2">
               Not registered?
-              <Link href="/register">Create an Account</Link>
+              <Link href="/register"> Create an Account </Link>
             </div>
           </form>
         </div>
@@ -107,5 +109,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

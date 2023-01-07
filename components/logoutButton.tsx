@@ -13,6 +13,6 @@ export function LogoutButton() {
   };
 
   return (
-    <button className='fs-5 font-serif text-dark mx-4 text-decoration-underline' onClick={logout}> Logout </button>
+    <button className='fs-5 font-serif text-light mx-4' onClick={logout}> Logout </button>
   );
 }

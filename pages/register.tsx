@@ -1,29 +1,39 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
-import { axiosInstance } from '../lib/apiInteractor/apiInstance';
+import { UserRequest } from '../lib/user/userRequest';
+import Modal from 'react-bootstrap/Modal';
+import { registerInteractor } from '../lib/auth/registerInteractor';
+import Image from 'next/image';
 
-function Register() {
+export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const router = useRouter();
 
-  const userRequest = {
-    username: username,
-    password: password,
-  };
-  const register = async (event: any) => {
+  const [show, setShow] = useState(false);
+  const closeModal = () => setShow(false);
+  const showModal = () => setShow(true);
+
+  const register = async (event: FormEvent) => {
     event.preventDefault();
 
-    try {
-      const res = await axiosInstance.post('/auth/register', userRequest);
-      console.log(res.data);
-      router.push('/');
+    if (password !== confirmPassword) {
+      return alert('password did not match');
+    }
+
+    const isRegistered = await registerInteractor({ password, username });
+
+    if (isRegistered) {
+      showModal();
+
       setUsername('');
       setPassword('');
-    } catch (error: any) {
-      console.error(error);
-      alert('invalid username or password');
+
+      setTimeout(() => router.push('/'), 5000);
+    } else {
+      alert('your weak! ' + username);
     }
   };
 
@@ -35,19 +45,23 @@ function Register() {
         <link rel="icon" href="/main-logo.png" />
       </Head>
 
-      <img
-        src="logo.png"
+      <Image
+        src="/logo.png"
         className="img-thumbnail w-25 h-25 border border-white"
         alt="logo.png"
+        width={500}
+        height={500}
       />
 
       <div className="row">
         <div className="col-sm-6 col-md-5 m-auto">
           <div className="d-flex justify-content-center">
-            <img
-              src="user-icon.png"
+            <Image
+              src="/user-icon.png"
               className="img-thumbnail border border-white w-24 h-24"
               alt="user-icon.png"
+              width={300}
+              height={300}
             />
           </div>
 
@@ -77,6 +91,21 @@ function Register() {
             </div>
 
             <div>
+              <input
+                className="form-control mt-4 border border-dark"
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <div id="passwordHelpBlock" className="form-text">
+                Your password must be 8-20 characters long, contain letters and
+                numbers, and must not contain spaces, special characters, or
+                emoji.
+              </div>
+            </div>
+
+            <div>
               <button
                 type="submit"
                 className="btn btn-info mt-5 w-100 border border-dark"
@@ -87,8 +116,11 @@ function Register() {
           </form>
         </div>
       </div>
+      <Modal show={show} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Registration Successful</Modal.Title>
+        </Modal.Header>
+      </Modal>
     </div>
   );
 }
-
-export default Register;
