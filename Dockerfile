@@ -27,7 +27,6 @@ COPY . .
 
 # RUN yarn build
 
-ENV NODE_ENV production
 
 # If using npm comment out above and use below instead
 RUN npm run build
