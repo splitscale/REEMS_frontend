@@ -6,7 +6,7 @@ import { UrlContainer } from '../../lib/container/UrlContainer';
 import { Url } from '../../lib/url/Url';
 
 export default function content() {
-  //   const [links, setLinks] = useState<Url[]>([]);
+  const [urls, setUrls] = useState<Url[]>([]);
 
   // onst loadLinks = async () => {
   //     try {
@@ -57,19 +57,16 @@ export default function content() {
           </thead>
 
           <tbody>
-            {links.map((link: UrlContainer) => (
-              <tr key={link.id} className="border-b border-current">
-                <td className="text-left font-sans px-6 py-3">
-                  {link.title}
-                  {link.name}
-                </td>
+            {urls.map((url: Url) => (
+              <tr key={url.id} className="border-b border-current">
+                <td className="text-left font-sans px-6 py-3">{url.title}</td>
                 <td>
                   <button className="btn btn-info py-2"> Edit </button>
                 </td>
                 <td>
                   <button
                     className="btn btn-danger py-2"
-                    onClick={() => deleteLink(link)}
+                    onClick={() => deleteLink(url)}
                   >
                     Delete
                   </button>
