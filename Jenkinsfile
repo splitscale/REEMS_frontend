@@ -1,5 +1,5 @@
 def runServer() {
-  sh 'docker run --name fordastore-web --network fordastore --network-alias web -p 3000:3000 -d splitscale/fordastore-web:latest'
+  sh 'docker run --name fordastore-web --network fordastore --network-alias fordastore-web -p 3000:3000 -d splitscale/fordastore-web:latest'
 }
 
 pipeline {
