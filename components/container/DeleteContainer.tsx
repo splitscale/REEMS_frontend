@@ -1,4 +1,4 @@
-import { UrlContainer } from '../lib/container/UrlContainer';
+import { UrlContainer } from '../../lib/container/UrlContainer';
 
 export default function DeleteContainerButton({
   containers,

@@ -1,4 +1,4 @@
 export interface UrlContainerResponse {
-  containerID: number;
-  name: string;
+  readonly containerID: number;
+  readonly name: string;
 }

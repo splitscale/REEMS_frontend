@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { UrlContainer } from '../lib/container/UrlContainer';
-import { handleFailure } from '../lib/handlers/handleFailure';
+import { useState } from 'react';
+import { UrlContainer } from '../../lib/container/UrlContainer';
+import { handleFailure } from '../../lib/handlers/handleFailure';
 import DeleteContainerButton from './DeleteContainer';
 import EditContainer from './EditContainer';
 

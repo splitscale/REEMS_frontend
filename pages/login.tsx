@@ -21,6 +21,8 @@ export default function Login() {
     if (isSuccess) {
       console.debug('Logged in');
 
+      router.reload();
+
       router.push('/home');
     } else {
       alert('Login failed! Please try again');

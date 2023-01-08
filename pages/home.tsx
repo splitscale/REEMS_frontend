@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
-import ContainerListTable from '../components/ContainerListTable';
+import ContainerListTable from '../components/container/ContainerListTable';
 import NavBar from '../components/navBar';
 import { storeInteractor } from '../lib/localStorage/storeInteractor';
 

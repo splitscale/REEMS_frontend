@@ -37,7 +37,7 @@ export function AddLink({ onSubmit }: { onSubmit: (link: Url) => void }) {
             from-pink-400 to-yellow-500 hover:from-green-500 hover:to-blue-500 ..."
           onClick={handleShow}
         >
-          Add Container
+          Add Link
         </Button>
       </div>
 
@@ -48,7 +48,7 @@ export function AddLink({ onSubmit }: { onSubmit: (link: Url) => void }) {
 
         <Modal.Body>
           <label className="block text-gray-600 text-sm font-normal">
-            Container Title
+            Link
           </label>
 
           <input
@@ -61,7 +61,7 @@ export function AddLink({ onSubmit }: { onSubmit: (link: Url) => void }) {
 
         <Modal.Footer>
           <Button variant="info" onClick={saveLink}>
-            Save Changes
+            Add
           </Button>
         </Modal.Footer>
       </Modal>

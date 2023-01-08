@@ -1,4 +1,4 @@
 export interface UrlContainerRequest {
-  uid: string;
-  name: string;
+  readonly uid: string;
+  readonly name: string;
 }

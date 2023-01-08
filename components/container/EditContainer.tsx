@@ -1,8 +1,8 @@
 import { title } from 'process';
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { UrlContainer } from '../lib/container/UrlContainer';
-import { UrlContainerBuilder } from '../lib/container/UrlContainerBuilder';
+import { UrlContainer } from '../../lib/container/UrlContainer';
+import { UrlContainerBuilder } from '../../lib/container/UrlContainerBuilder';
 
 export default function EditContainer({
   container,

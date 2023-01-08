@@ -20,7 +20,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/AddContainer.tsx",
+    "components/container/AddContainer.tsx",
     "pages/content.jsx",
     "pages/home.jsx",
     "pages/content.jsx",

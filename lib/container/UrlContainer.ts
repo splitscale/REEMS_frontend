@@ -1,4 +1,4 @@
 export interface UrlContainer {
-  id: number;
-  title: string;
+  readonly id: number;
+  readonly title: string;
 }

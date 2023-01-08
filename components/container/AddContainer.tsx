@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { apiUrl } from '../lib/apiconfigs/apiUrl';
-import { UrlContainer } from '../lib/container/UrlContainer';
-import { UrlContainerRequest } from '../lib/container/UrlContainerRequest';
-import { UrlContainerResponse } from '../lib/container/UrlContainerResponse';
-import { getStoredToken } from '../lib/localStorage/getStoredToken';
-import { getStoredUser } from '../lib/localStorage/getStoredUser';
+import { apiUrl } from '../../lib/apiconfigs/apiUrl';
+import { UrlContainer } from '../../lib/container/UrlContainer';
+import { UrlContainerRequest } from '../../lib/container/UrlContainerRequest';
+import { UrlContainerResponse } from '../../lib/container/UrlContainerResponse';
+import { getStoredToken } from '../../lib/localStorage/getStoredToken';
+import { getStoredUser } from '../../lib/localStorage/getStoredUser';
 
 export const AddContainer = ({
   onSuccess,
