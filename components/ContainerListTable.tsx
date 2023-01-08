@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getContainerList } from '../lib/container/get/getContainerList';
 import { UrlContainer } from '../lib/container/UrlContainer';
 import { handleFailure } from '../lib/handlers/handleFailure';
+import { storeInteractor } from '../lib/localStorage/storeInteractor';
 import { AddContainer } from './AddContainer';
 import ContainerListRenderer from './ContainerListRenderer';
 import TableHeader from './Tableheader';
@@ -14,7 +15,10 @@ export default function ContainerListTable() {
   }
 
   async function loadContainers() {
-    const containerList = await getContainerList();
+    const uid = storeInteractor.getUser().uid;
+    const token = storeInteractor.getToken();
+
+    const containerList = await getContainerList(uid, token);
 
     setContainers(containerList);
   }

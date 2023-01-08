@@ -14,13 +14,13 @@ export default function ContainerListRenderer({
   const list = containers.map((container: UrlContainer) => (
     <tr key={container.id} className="border-b border-current">
       <td className="text-left font-sans px-6 py-3 uppercase text-center">
-        <Link href="/content/[containerId]" as={`/content/${container.id}`}>
+        <Link href="/container/[containerId]" as={`/container/${container.id}`}>
           {container.title}
         </Link>
       </td>
       <td>
         <EditContainer
-          containerId={container.id}
+          container={container}
           containers={containers}
           onSuccess={onListUpdate}
           onFail={handleFailure}

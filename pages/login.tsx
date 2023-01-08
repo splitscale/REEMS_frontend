@@ -1,39 +1,29 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { loginInteractor } from '../lib/auth/loginInteractor';
-import { User } from '../lib/user/User';
 import Image from 'next/image';
 
 export default function Login() {
+  const router = useRouter();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter();
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
 
     console.debug('username: ' + username);
-    console.debug('password: ' + password);
 
-    const res = await loginInteractor({ username, password });
+    const isSuccess = await loginInteractor({ username, password });
 
-    if (res.ok) {
-      const authToken = res.headers.get('authorization');
-      const user = (await res.json()) as User;
-
-      console.log('User logged in: ', user);
-      console.log('Authorization: ', authToken);
-
-      if (authToken && user) {
-        localStorage.setItem('Authorization', authToken);
-        localStorage.setItem('uid', user.uid);
-      }
+    if (isSuccess) {
+      console.debug('Logged in');
 
       router.push('/home');
     } else {
-      alert('Login failed! Please try again: ' + res.status);
+      alert('Login failed! Please try again');
     }
   };
 

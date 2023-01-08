@@ -5,16 +5,16 @@ import { apiUrl } from '../lib/apiconfigs/apiUrl';
 import { UrlContainer } from '../lib/container/UrlContainer';
 import { UrlContainerRequest } from '../lib/container/UrlContainerRequest';
 import { UrlContainerResponse } from '../lib/container/UrlContainerResponse';
-import { getAuthToken } from '../lib/localstorage/getAuthToken';
-import { getUid } from '../lib/localstorage/getUid';
+import { getStoredToken } from '../lib/localStorage/getStoredToken';
+import { getStoredUser } from '../lib/localStorage/getStoredUser';
 
-export function AddContainer({
+export const AddContainer = ({
   onSuccess,
   onFail,
 }: {
   onSuccess: (value: UrlContainer) => void;
   onFail: (err: Error) => void;
-}) {
+}) => {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState('');
 
@@ -35,8 +35,8 @@ export function AddContainer({
     }
 
     // CHECK FOR CREDENTIALS
-    const uid = getUid();
-    const authToken = getAuthToken();
+    const uid = getStoredUser().uid;
+    const authToken = getStoredToken();
 
     if (uid === null || authToken === null) {
       alert('Please login');
@@ -118,4 +118,6 @@ export function AddContainer({
       </Modal>
     </div>
   );
-}
+};
+
+export default AddContainer;

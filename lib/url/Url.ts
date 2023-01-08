@@ -1,6 +1,5 @@
 export interface Url {
-  id: number;
-  title: string;
-  name: string
-  }
-  
+  readonly id: number;
+  readonly title: string;
+  readonly name: string;
+}

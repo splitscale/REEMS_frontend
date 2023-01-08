@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
-import { UserRequest } from '../lib/user/userRequest';
 import Modal from 'react-bootstrap/Modal';
 import { registerInteractor } from '../lib/auth/registerInteractor';
 import Image from 'next/image';

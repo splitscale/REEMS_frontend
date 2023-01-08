@@ -2,10 +2,9 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { AddLink } from '../../components/AddLink';
 import NavBar from '../../components/navBar';
-import { UrlContainer } from '../../lib/container/UrlContainer';
 import { Url } from '../../lib/url/Url';
 
-export default function content() {
+export default function ContainerContents() {
   const [urls, setUrls] = useState<Url[]>([]);
 
   // onst loadLinks = async () => {

@@ -2,49 +2,47 @@ import { title } from 'process';
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { UrlContainer } from '../lib/container/UrlContainer';
+import { UrlContainerBuilder } from '../lib/container/UrlContainerBuilder';
 
 export default function EditContainer({
-  containerId,
+  container,
   containers,
   onSuccess,
   onFail,
 }: {
-  containerId: number;
-  containers: UrlContainer[];
-  onSuccess: (value: UrlContainer[]) => void;
-  onFail: (err: Error) => void;
+  readonly container: UrlContainer;
+  readonly containers: UrlContainer[];
+  readonly onSuccess: (value: UrlContainer[]) => void;
+  readonly onFail: (err: Error) => void;
 }) {
   const [show, setShow] = useState(false);
-  const [title, setTitle] = useState('');
+  const [newTitle, setNewTitle] = useState(container.title);
 
   const closeModal = () => {
     setShow(false);
-    setTitle('');
+    setNewTitle('');
   };
   const showModal = () => setShow(true);
 
   function editContainerInDb() {
-    if (title === '') {
+    if (newTitle === '') {
       onFail(new Error('Invalid container title: ' + title));
       return;
     }
 
     console.log('edited container: ', title);
 
-    const editedContainer: UrlContainer = {
-      id: containerId,
-      title: title,
-    };
+    const mappedContainers: UrlContainer[] = containers.map(
+      (currentContainer: UrlContainer) => {
+        if (currentContainer.id === container.id) {
+          return UrlContainerBuilder(container.id, newTitle);
+        }
 
-    const filteredContainers = containers.map((c: UrlContainer) => {
-      if (c.id === containerId) {
-        return editedContainer;
+        return currentContainer;
       }
+    );
 
-      return c;
-    });
-
-    onSuccess(filteredContainers);
+    onSuccess(mappedContainers);
 
     closeModal();
   }
@@ -67,8 +65,8 @@ export default function EditContainer({
 
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
             className="h-10 w-96 border mt-2 px-2 py-2"
           ></input>
         </Modal.Body>
