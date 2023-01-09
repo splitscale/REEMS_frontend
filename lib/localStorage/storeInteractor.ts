@@ -1,3 +1,4 @@
+import { AuthProps } from '../auth/AuthProps';
 import { clearStoredData } from './clearStoredData';
 import { getStoredToken } from './getStoredToken';
 import { getStoredUser } from './getStoredUser';
@@ -12,4 +13,10 @@ export const storeInteractor = {
   clearAll: clearStoredData,
   checkToken: getStoredToken() ? true : false,
   checkUser: getStoredUser() ? true : false,
+  geAuthProps: (): AuthProps => {
+    return {
+      token: getStoredToken(),
+      uid: getStoredUser().uid,
+    };
+  },
 };

@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import ContainerListTable from '../components/container/ContainerListTable';
 import LoadingSpinner from '../components/loading/LoadingSpinner';
 import NavBar from '../components/navBar';
+import { AuthProps } from '../lib/auth/AuthProps';
 import { storeInteractor } from '../lib/localStorage/storeInteractor';
 
 const Home = () => {
   // loading state
   const [showSpinner, setShowSpinner] = useState<boolean>(true);
-  const [authProps, setAuthProps] = useState<{ uid: string; token: string }>({
+  const [authProps, setAuthProps] = useState<AuthProps>({
     uid: '',
     token: '',
   });
@@ -18,10 +19,7 @@ const Home = () => {
     if (storeInteractor.checkToken) {
       console.log('has token: ' + storeInteractor.checkToken);
 
-      setAuthProps({
-        token: storeInteractor.getToken(),
-        uid: storeInteractor.getUser().uid,
-      });
+      setAuthProps(storeInteractor.geAuthProps());
 
       setTimeout(() => {
         setShowSpinner(false);
