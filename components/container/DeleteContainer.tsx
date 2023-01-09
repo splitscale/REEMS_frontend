@@ -1,4 +1,5 @@
 import { UrlContainer } from '../../lib/container/UrlContainer';
+import { deleteContainer } from '../deleteContainer';
 
 export default function DeleteContainerButton({
   containers,
@@ -18,6 +19,7 @@ export default function DeleteContainerButton({
       (c: UrlContainer) => c.id !== containerId
     );
 
+    deleteContainer(containerId)
     onSuccess(filteredContainers);
 
     if (containerId === undefined) {

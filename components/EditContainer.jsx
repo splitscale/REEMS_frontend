@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { any } from "react-native/Libraries/Text/TextNativeComponent";
 
 
-function EditContainer({container}) {
+export function editContainer({containerId}) {
     const [show, setShow] = useState(false);
     const router = useRouter();
 
@@ -29,7 +29,7 @@ function EditContainer({container}) {
 
       event.preventDefault();
 
-      await fetch(`/containers/${container.Id}`, config)
+      await fetch(apiUrl(`/container?cid=${containerId}`), config)
       .then(() => {
         alert("Edit Success")
         router.push('/');
@@ -75,4 +75,3 @@ function EditContainer({container}) {
     )
 }
 
-export default EditContainer
