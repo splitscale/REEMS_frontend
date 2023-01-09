@@ -7,24 +7,26 @@ import { AddContainer } from './AddContainer';
 import ContainerListRenderer from './ContainerListRenderer';
 import TableHeader from '../Tableheader';
 
-export default function ContainerListTable() {
+export default function ContainerListTable({
+  props,
+}: {
+  props: { uid: string; token: string };
+}) {
   const [containers, setContainers] = useState<UrlContainer[]>([]);
 
   function handleAddContainer(container: UrlContainer) {
     setContainers([...containers, container]);
   }
 
-  async function loadContainers() {
-    const uid = storeInteractor.getUser().uid;
-    const token = storeInteractor.getToken();
-
-    const containerList = await getContainerList(uid, token);
-
-    setContainers(containerList);
-  }
-
   useEffect(() => {
     console.debug('loading containers...');
+
+    const loadContainers = async () => {
+      const containerList = await getContainerList(props.uid, props.token);
+
+      setContainers(containerList);
+    };
+
     loadContainers();
   }, []);
 

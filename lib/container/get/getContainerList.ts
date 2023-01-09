@@ -16,9 +16,13 @@ export const getContainerList = async (
     headers: headers,
   });
 
-  const containerList = (await res.json()) as UrlContainerResponse[];
+  if (res.ok) {
+    const containerList = (await res.json()) as UrlContainerResponse[];
 
-  console.log(containerList);
-
-  return containerList.map(parseContainerResponse);
+    console.log(containerList);
+    return containerList.map(parseContainerResponse);
+  } else {
+    console.error(res);
+    return [];
+  }
 };

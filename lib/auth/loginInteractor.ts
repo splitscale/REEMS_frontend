@@ -25,6 +25,8 @@ export const loginInteractor = async (
       storeInteractor.setToken(token);
       storeInteractor.setUser(user);
     }
+  } else {
+    console.error('Error logging in user:' + res);
   }
 
   return res.ok;

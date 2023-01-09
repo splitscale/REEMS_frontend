@@ -4,15 +4,14 @@ import { logoutInteractor } from '../lib/auth/logoutInteractor';
 export function LogoutButton() {
   const router = useRouter();
 
-  const logout = (event: any) => {
-    event.preventDefault();
-
+  const logout = () => {
     logoutInteractor();
-
-    router.push('/');
+    router.reload();
   };
 
   return (
-    <button className='fs-5 font-serif text-light mx-4' onClick={logout}> Logout </button>
+    <button className="fs-5 font-serif text-light mx-4" onClick={logout}>
+      <span>Logout</span>
+    </button>
   );
 }

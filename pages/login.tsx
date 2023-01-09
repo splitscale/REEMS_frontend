@@ -4,12 +4,30 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { loginInteractor } from '../lib/auth/loginInteractor';
 import Image from 'next/image';
+import LoadingSpinner from '../components/loading/LoadingSpinner';
+import { storeInteractor } from '../lib/localStorage/storeInteractor';
 
 export default function Login() {
   const router = useRouter();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  // loading state
+  const [showSpinner, setShowSpinner] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (storeInteractor.checkToken) {
+      console.log('has token: ' + storeInteractor.checkToken);
+      setShowSpinner(true);
+
+      router.push('/home');
+    } else {
+      setShowSpinner(false);
+    }
+  }, []);
+
+  if (showSpinner) return <LoadingSpinner />;
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
@@ -20,10 +38,7 @@ export default function Login() {
 
     if (isSuccess) {
       console.debug('Logged in');
-
       router.reload();
-
-      router.push('/home');
     } else {
       alert('Login failed! Please try again');
     }
