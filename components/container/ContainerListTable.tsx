@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { getContainerList } from '../../lib/container/get/getContainerList';
 import { UrlContainer } from '../../lib/container/UrlContainer';
 import { handleFailure } from '../../lib/handlers/handleFailure';
-import { storeInteractor } from '../../lib/localStorage/storeInteractor';
 import { AddContainer } from './AddContainer';
 import ContainerListRenderer from './ContainerListRenderer';
 import TableHeader from '../Tableheader';
@@ -15,7 +14,7 @@ export default function ContainerListTable({
   const [containers, setContainers] = useState<UrlContainer[]>([]);
 
   function handleAddContainer(container: UrlContainer) {
-    setContainers([...containers, container]);
+    setContainers([container, ...containers]);
   }
 
   useEffect(() => {

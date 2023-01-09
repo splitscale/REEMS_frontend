@@ -19,7 +19,7 @@ const Home = () => {
     if (storeInteractor.checkToken) {
       console.log('has token: ' + storeInteractor.checkToken);
 
-      setAuthProps(storeInteractor.geAuthProps());
+      setAuthProps(storeInteractor.getAuthProps());
 
       setTimeout(() => {
         setShowSpinner(false);

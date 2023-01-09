@@ -108,7 +108,7 @@ export const AddContainer = ({
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="cancel" onClick={handleClose}>
+          <Button variant="warning" onClick={handleClose}>
             Cancel
           </Button>
           <Button variant="info" onClick={saveContainer}>
