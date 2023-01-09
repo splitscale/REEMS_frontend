@@ -8,7 +8,7 @@ import { storeInteractor } from '../lib/localStorage/storeInteractor';
 
 const Home = () => {
   // loading state
-  const [showSpinner, setShowSpinner] = useState<boolean>(false);
+  const [showSpinner, setShowSpinner] = useState<boolean>(true);
   const [authProps, setAuthProps] = useState<{ uid: string; token: string }>({
     uid: '',
     token: '',
@@ -17,7 +17,15 @@ const Home = () => {
   useEffect(() => {
     if (storeInteractor.checkToken) {
       console.log('has token: ' + storeInteractor.checkToken);
-      setShowSpinner(false);
+
+      setAuthProps({
+        token: storeInteractor.getToken(),
+        uid: storeInteractor.getUser().uid,
+      });
+
+      setTimeout(() => {
+        setShowSpinner(false);
+      }, 1000);
     } else {
       setShowSpinner(true);
       router.push('/login');
