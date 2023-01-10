@@ -11,7 +11,7 @@ export const getLinkList = async (
   headers.set('Content-Type', 'application/json');
   headers.set('Authorization', token);
 
-  const res = await fetch(apiUrl('/urls'), {
+  const res = await fetch(apiUrl(`/urls?cid=${containerId}`), {
     method: 'get',
     headers: headers,
   });
