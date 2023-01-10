@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { UrlContainer } from '../../lib/container/UrlContainer';
 import { handleFailure } from '../../lib/handlers/handleFailure';
 import DeleteContainerButton from './DeleteContainer';
@@ -12,10 +12,20 @@ export default function ContainerListRenderer({
   containers: UrlContainer[];
   onListUpdate: (containers: UrlContainer[]) => void;
 }) {
+
+  const routeHandler = (containerId: number) => {
+    const router = useRouter()
+
+    router.push({
+      pathname: '/url/[containerId]',
+      query: { containerId: containerId }
+    }, 'url/[containerId]');
+  }
+
   const list = containers.map((container: UrlContainer) => (
     <tr key={container.id} className="border-b border-current">
       <td className="text-left font-sans px-6 py-3 uppercase text-center">
-        <Link href="/container/[containerId]" as={`/container/${container.id}`}>
+        <Link href="/url/[containerId]" as={`/url/${container.id}`} onClick={() => routeHandler(container.id)}>
           {container.title}
         </Link>
       </td>

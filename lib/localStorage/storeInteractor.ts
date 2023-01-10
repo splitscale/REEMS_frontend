@@ -13,7 +13,7 @@ export const storeInteractor = {
   clearAll: clearStoredData,
   checkToken: getStoredToken() ? true : false,
   checkUser: getStoredUser() ? true : false,
-  geAuthProps: (): AuthProps => {
+  getAuthProps: (): AuthProps => {
     return {
       token: getStoredToken(),
       uid: getStoredUser().uid,
