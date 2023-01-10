@@ -19,19 +19,22 @@ export default function ContainerContents() {
     token: '',
   });
 
-  console.log('in container id');
-
   useEffect(() => {
-    alert(router.query.containerId);
+    const id = router.query.containerId;
+    const containerId = typeof id === 'string' ? parseInt(id) : 0;
 
-    if (storeInteractor.checkToken) {
+    if (storeInteractor.checkToken && containerId) {
       console.log('has token: ' + storeInteractor.checkToken);
 
-      // console.log(router.query.containerId);
-      // setLinkListProps({ containerId: 22, token: storeInteractor.getToken() });
+      console.log(containerId);
+
+      setLinkListProps({
+        containerId: containerId,
+        token: storeInteractor.getToken(),
+      });
 
       setTimeout(() => {
-        setShowSpinner(true);
+        setShowSpinner(false);
       }, 1000);
     } else {
       setShowSpinner(true);
