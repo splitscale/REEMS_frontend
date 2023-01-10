@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { apiUrl } from '../../lib/apiconfigs/apiUrl';
-import { AuthProps } from '../../lib/auth/AuthProps';
 import { Url } from '../../lib/url/Url';
 import { UrlRequest } from '../../lib/url/UrlRequest';
 import { UrlResponse } from '../../lib/url/UrlResponse';
@@ -29,7 +28,8 @@ export const AddLink = ({
 
     const newUrl: UrlRequest = {
       containerID: containerID,
-      innerUrl: url
+      innerUrl: url,
+      urlID: 0
     };
 
     const headers = new Headers();
