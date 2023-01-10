@@ -1,5 +1,5 @@
+import { deleteContainer } from '../../lib/container/delete/deleteContiner';
 import { UrlContainer } from '../../lib/container/UrlContainer';
-import { deleteContainer } from '../deleteContainer';
 
 export default function DeleteContainerButton({
   containers,
@@ -12,18 +12,29 @@ export default function DeleteContainerButton({
   onSuccess: (containers: UrlContainer[]) => void;
   onFail: (err: Error) => void;
 }) {
-  function deleteContainerInDb() {
+  async function deleteContainerInDb() {
+    if (containerId === undefined) {
+      onFail(new Error('Invalid container: ' + containers));
+    }
+
+    if (!confirm('Are you sure you want to delete this container?')) {
+      return;
+    }
+
     console.log('deleted', containerId);
 
     const filteredContainers = containers.filter(
       (c: UrlContainer) => c.id !== containerId
     );
 
-    deleteContainer(containerId)
-    onSuccess(filteredContainers);
+    const isSuccess = await deleteContainer(containerId);
 
-    if (containerId === undefined) {
-      onFail(new Error('Invalid container: ' + containers));
+    if (isSuccess) {
+      onSuccess(filteredContainers);
+    } else {
+      onFail(
+        new Error('Unable to delete container, try again later:' + containerId)
+      );
     }
   }
 

@@ -1,6 +1,7 @@
 import { title } from 'process';
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { editContainerHandler } from '../../lib/container/edit/editContainer';
 import { UrlContainer } from '../../lib/container/UrlContainer';
 import { UrlContainerBuilder } from '../../lib/container/UrlContainerBuilder';
 
@@ -24,7 +25,7 @@ export default function EditContainer({
   };
   const showModal = () => setShow(true);
 
-  function editContainerInDb() {
+  async function editContainerInDb() {
     if (newTitle === '') {
       onFail(new Error('Invalid container title: ' + title));
       return;
@@ -42,9 +43,14 @@ export default function EditContainer({
       }
     );
 
-    onSuccess(mappedContainers);
+    const isSuccess = await editContainerHandler(container.id, newTitle);
 
-    closeModal();
+    if (isSuccess) {
+      onSuccess(mappedContainers);
+      closeModal();
+    } else {
+      onFail(new Error('something went wrong, try again later'));
+    }
   }
 
   return (
