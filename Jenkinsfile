@@ -50,7 +50,7 @@ pipeline {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                   }
 
-                  sh 'docker push kasutu/fordastore-web:latest'
+                  sh 'docker push fordastore-web:latest'
                 }
               }
         }
