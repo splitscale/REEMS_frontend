@@ -1,5 +1,5 @@
 def runServer() {
-  sh 'docker run --name fordastore-web --network fordastore --network-alias fordastore-web -p 3000:3000 -d splitscale/fordastore-web:latest'
+  sh 'docker run --name fordastore-web --network fordastore --network-alias fordastore-web -p 3000:3000 -d fordastore-web:latest'
 }
 
 pipeline {
@@ -39,8 +39,20 @@ pipeline {
 
         stage('build docker image') {
       steps {
-        sh 'docker build -t splitscale/fordastore-web:latest .'
+        sh 'docker build -t fordastore-web:latest .'
       }
+        }
+
+        stage('upload to docker hub') {
+              steps {
+                script {
+                  withCredentials([usernamePassword(credentialsId: 'docker-pwd', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                  }
+
+                  sh 'docker push kasutu/fordastore-web:latest'
+                }
+              }
         }
 
         stage('deploy') {

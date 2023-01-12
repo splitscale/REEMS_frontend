@@ -14,7 +14,7 @@ export default function ContainerListTable({
   const [containers, setContainers] = useState<UrlContainer[]>([]);
 
   function handleAddContainer(container: UrlContainer) {
-    setContainers([container, ...containers]);
+    setContainers([container, ...containers.slice(0)]);
   }
 
   useEffect(() => {

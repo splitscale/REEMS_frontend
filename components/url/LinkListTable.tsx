@@ -13,7 +13,7 @@ export default function ListListTable({
   const [urls, setUrls] = useState<Url[]>([]);
 
   function handleAddContainer(url: Url) {
-    setUrls([url, ...urls]);
+    setUrls([url, ...urls.slice(0)]);
   }
 
   useEffect(() => {
