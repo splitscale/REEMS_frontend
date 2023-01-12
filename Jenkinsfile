@@ -1,5 +1,5 @@
 def runServer() {
-  sh 'docker run --name fordastore-web --network fordastore --network-alias fordastore-web -p 3000:3000 -d fordastore-web:latest'
+  sh 'docker run --name fordastore-web --network fordastore --network-alias fordastore-web -p 3000:3000 -d kasutu/fordastore-web:latest'
 }
 
 pipeline {
@@ -39,7 +39,7 @@ pipeline {
 
         stage('build docker image') {
       steps {
-        sh 'docker build -t fordastore-web:latest .'
+        sh 'docker build -t kasutu/fordastore-web:latest .'
       }
         }
 
@@ -50,7 +50,7 @@ pipeline {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                   }
 
-                  sh 'docker push fordastore-web:latest'
+                  sh 'docker push kasutu/fordastore-web:latest'
                 }
               }
         }
