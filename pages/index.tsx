@@ -1,7 +1,5 @@
 import Login from './login';
 
-const Index = () => {
+export default function Index() {
   return <Login />;
 };
-
-export default Index;
