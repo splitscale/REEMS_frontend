@@ -1,13 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/dist/client/link';
-import { useAuth } from '../context/AuthContext';
-import { useRouter } from 'next/router';
+import NavBar from '../components/Navbar';
 
 
 export default function Home() {
-  const { user, logout } = useAuth()
-  const router = useRouter()
-
   return (
     <div>
       <Head>
@@ -16,6 +12,8 @@ export default function Home() {
         <link rel="icon" href="/main-logo.png" />
       </Head>
 
+      <NavBar/>
+      
       <div className="text-center mt-2">
         <Link href="/energyConsumption"> Energy Consumption </Link>
       </div>
@@ -30,13 +28,6 @@ export default function Home() {
 
       <div className="text-center mt-2">
         <Link href="/tenantInformation"> Tenant Information </Link>
-      </div>
-
-      <div className="text-center mt-2" onClick={() => {
-        logout()
-        router.push('/login')
-      }}>
-        Logout
       </div>
     </div>
   );

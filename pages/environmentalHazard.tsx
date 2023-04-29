@@ -1,6 +1,9 @@
+import NavBar from "../components/Navbar";
+
 export default function EnvironmentalHazard() {
   return (
     <>
+      <NavBar/>
       <div className="mt-5 font-serif text-center text-5xl fw-bold">
         Environmental Hazard
       </div>
