@@ -31,7 +31,7 @@ export default function NavBar() {
         <div className="relative mx-3 mr-4">
           <button
             type="button"
-            className="pl-2 flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+            className="pl-2 flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-white focus:ring-offset-gray-800"
             id="user-menu-button"
             aria-expanded={isOpen}
             aria-haspopup="true"
