@@ -14,19 +14,19 @@ export default function Home() {
       <NavBar/>
 
       <div className="grid grid-cols-2 gap-4 mt-32">
-        <div className="rounded-md box text-center bg-gradient-to-b from-yellow-500 to-yellow-800 w-80 h-52 flex items-center justify-center mx-auto">
+        <div className="rounded-lg box text-center bg-gradient-to-b from-yellow-500 to-yellow-800 w-80 h-52 flex items-center justify-center mx-auto">
           <Link href="/energyConsumption" className='text-white text-2xl'>Energy Consumption</Link>
         </div>
 
-        <div className="rounded-md box text-center bg-gradient-to-b from-green-500 to-green-800 w-80 h-52 flex items-center justify-center mx-auto">
+        <div className="rounded-lg box text-center bg-gradient-to-b from-green-500 to-green-800 w-80 h-52 flex items-center justify-center mx-auto">
           <Link href="/environmentalHazard" className='text-white text-2xl'>Environmental Hazards</Link>
         </div>
 
-        <div className="rounded-md box text-center  bg-gradient-to-b from-red-500 to-red-800 w-80 h-52 flex items-center justify-center mx-auto mt-16 mb-32">
+        <div className="rounded-lg box text-center  bg-gradient-to-b from-red-500 to-red-800 w-80 h-52 flex items-center justify-center mx-auto mt-8 mb-32">
           <Link href="/expense" className='text-white text-2xl'>Expense</Link>
         </div>
 
-        <div className="rounded-md box text-center bg-gradient-to-b from-blue-500 to-blue-800 w-80 h-52 flex items-center justify-center mx-auto mt-16 mb-32">
+        <div className="rounded-lg box text-center bg-gradient-to-b from-blue-500 to-blue-800 w-80 h-52 flex items-center justify-center mx-auto mt-8 mb-32">
           <Link href="/tenantInformation" className='text-white text-2xl'>Tenant Information</Link>
         </div>
       </div>
