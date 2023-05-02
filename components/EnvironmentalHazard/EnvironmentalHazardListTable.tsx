@@ -12,14 +12,20 @@ export default function EnvironmentalHazardListTable() {
     <>
       <div className="mt-5 font-serif text-center text-5xl fw-bold"> Environmental Hazard </div>
 
-      <div className="container mt-5 d-flex justify-content-between align-items-center">
-        <AddEnvironmentalHazard />
-        <Filter />
-        <SearchInput />
-      </div>
+      <div className="d-flex flex-column w-100 mx-2">
+        <div className="d-flex justify-content-between align-items-center mt-5">
+          <div className="ml-8">
+            <AddEnvironmentalHazard />
+          </div>
+          <div className="d-flex flex-grow-1 justify-content-end">
+            <Filter />
+            <div className="ml-4 mr-8">
+              <SearchInput />
+            </div>
+          </div>
+        </div>
 
-      <div className="container">
-        <table className="mx-auto">
+        <table className="mx-8 flex-grow-1">
           <thead className="text-center bg-gradient-to-b from-green-500 to-green-800 text-white">
             <tr>
               <th scope="col" className="px-6 py-3 border border-gray-900">
@@ -49,7 +55,7 @@ export default function EnvironmentalHazardListTable() {
                 <td className="border border-black">{environmentalHazard.importance}</td>
                 <td className="border border-black text-center">
                   <EditEnvironmentalHazardButton />
-                  <DeleteEnvironmentalHazardButton/>
+                  <DeleteEnvironmentalHazardButton />
                 </td>
               </tr>
             ))}

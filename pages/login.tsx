@@ -1,21 +1,21 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
 export default function Login() {
   const router = useRouter()
-  const {user, login} = useAuth()
+  const {user, login } = useAuth()
   console.log(user)
-
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault()
-    
+
     try {
       await login(email, password)
       router.push('/home')
@@ -80,8 +80,7 @@ export default function Login() {
             <div>
               <button
                 type="submit"
-                className="btn btn-success mt-5 w-100 border border-dark"
-              >
+                className="btn btn-success mt-5 w-100 border border-dark">
                 Login
               </button>
             </div>

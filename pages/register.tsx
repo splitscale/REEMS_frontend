@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
@@ -8,11 +8,11 @@ export default function Register() {
   const router = useRouter()
   const { user, register } = useAuth()
   console.log(user)
-
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async (e: any) => {
+  const handleRegister = async (e: FormEvent) => {
     e.preventDefault()
 
     try {
@@ -79,8 +79,7 @@ export default function Register() {
             <div>
               <button
                 type="submit"
-                className="btn btn-success mt-5 w-100 border border-dark"
-              >
+                className="btn btn-success mt-5 w-100 border border-dark">
                 Register
               </button>
             </div>
