@@ -11,14 +11,20 @@ export default function ExpenseListTable() {
     <>
       <div className="mt-5 font-serif text-center text-5xl fw-bold"> Expense </div><div className="container">
 
-        <div className="container mt-5 d-flex justify-content-between align-items-center">
-          <AddExpense />
-          <Filter />
-          <SearchInput />
-        </div>
+        <div className="d-flex flex-column w-100 mx-2">
+          <div className="d-flex justify-content-between align-items-center mt-5">
+            <div className="ml-8">
+              <AddExpense />
+            </div>
+            <div className="d-flex flex-grow-1 justify-content-end">
+              <Filter />
+              <div className="ml-4 mr-8">
+                <SearchInput />
+              </div>
+            </div>
+          </div>
 
-        <div className="container">
-          <table className="mx-auto">
+          <table className="mx-8 flex-grow-1">
             <thead className="text-center bg-gradient-to-b from-red-500 to-red-900 text-white">
               <tr>
                 <th scope="col" className="px-6 py-3 border border-gray-900">
