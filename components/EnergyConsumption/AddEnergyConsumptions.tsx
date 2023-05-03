@@ -80,11 +80,8 @@ export default function AddEnergyConsumption() {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="info" onClick={handleSubmit}>
-            Add
+          <Button variant="primary" className="w-100" onClick={handleSubmit}>
+          Save
           </Button>
         </Modal.Footer>
       </Modal>

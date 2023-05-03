@@ -23,7 +23,7 @@ export default function DeleteEnvironmentalHazardButton(props: { id: number, onD
 
   return (
     <button
-      className="bi bi-trash"
+      className="bi bi-trash text-md "
       onClick={handleDelete}
       disabled={loading}
     />

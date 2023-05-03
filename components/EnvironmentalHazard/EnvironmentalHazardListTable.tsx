@@ -39,56 +39,57 @@ export default function EnvironmentalHazardListTable() {
   return (
     <>
       <div className="mt-5 font-serif text-center text-5xl fw-bold"> Environmental Hazard </div>
-
-      <div className="d-flex flex-column w-100 mx-2">
-        <div className="d-flex justify-content-between align-items-center mt-5">
-          <div className="ml-8">
-            <AddEnvironmentalHazard />
-          </div>
-          <div className="d-flex flex-grow-1 justify-content-end">
-            <Filter />
-            <div className="ml-4 mr-8">
-              <SearchEnvironmentalHazard onSearch={handleSearch} />
+      <div className="container">
+        <div className="d-flex flex-column w-100 mx-2">
+          <div className="d-flex justify-content-between align-items-center mt-5">
+            <div className="ml-8">
+              <AddEnvironmentalHazard />
+            </div>
+            <div className="d-flex flex-grow-1 justify-content-end">
+              <Filter />
+              <div className="ml-4 mr-8">
+                <SearchEnvironmentalHazard onSearch={handleSearch} />
+              </div>
             </div>
           </div>
-        </div>
 
-        <table className="mx-8 flex-grow-1">
-          <thead className="text-center bg-gradient-to-b from-green-500 to-green-800 text-white">
-            <tr>
-              <th scope="col" className="px-6 py-3 border border-gray-900">
-                ID
-              </th>
-              <th scope="col" className="px-6 py-3 border border-gray-900">
-                Environmental Hazards
-              </th>
-              <th scope="col" className="px-6 py-3 border border-gray-900">
-                Description
-              </th>
-              <th scope="col" className="px-6 py-3 border border-gray-900">
-                Importance
-              </th>
-              <th scope="col" className="px-6 py-3 border border-gray-900">
-                Action
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {filteredEnvironmentalHazards.map((environmentalHazard) => (
-              <tr key={environmentalHazard.id}>
-                <td className="border border-black">{environmentalHazard.id}</td>
-                <td className="border border-black">{environmentalHazard.username}</td>
-                <td className="border border-black">{environmentalHazard.email}</td>
-                <td className="border border-black">{environmentalHazard.name}</td>
-                <td className="border border-black text-center">
-                  <EditEnvironmentalHazardButton />
-                  <DeleteEnvironmentalHazardButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
-                </td>
+          <table className="mx-8 flex-grow-1">
+            <thead className="text-center bg-gradient-to-b from-green-500 to-green-800 text-white">
+              <tr>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  ID
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Environmental Hazards
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Description
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Importance
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Action
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {filteredEnvironmentalHazards.map((environmentalHazard) => (
+                <tr key={environmentalHazard.id}>
+                  <td className="border border-black">{environmentalHazard.id}</td>
+                  <td className="border border-black">{environmentalHazard.username}</td>
+                  <td className="border border-black">{environmentalHazard.email}</td>
+                  <td className="border border-black">{environmentalHazard.name}</td>
+                  <td className="border border-black text-center">
+                    <EditEnvironmentalHazardButton />
+                    <DeleteEnvironmentalHazardButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

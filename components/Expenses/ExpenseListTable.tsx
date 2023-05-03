@@ -9,8 +9,8 @@ import EditExpenseButton from "./EditExpense";
 export default function ExpenseListTable() {
   return (
     <>
-      <div className="mt-5 font-serif text-center text-5xl fw-bold"> Expense </div><div className="container">
-
+      <div className="mt-5 font-serif text-center text-5xl fw-bold"> Expense </div>
+      <div className="container">
         <div className="d-flex flex-column w-100 mx-2">
           <div className="d-flex justify-content-between align-items-center mt-5">
             <div className="ml-8">
@@ -66,6 +66,7 @@ export default function ExpenseListTable() {
           </table>
         </div>
       </div>
+      <div />
     </>
   );
 }

@@ -41,11 +41,8 @@ export default function AddExpense() {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="info" onClick={saveContainer}>
-            Add
+          <Button variant="primary" className="w-100" onClick={saveContainer}>
+            Save
           </Button>
         </Modal.Footer>
       </Modal>

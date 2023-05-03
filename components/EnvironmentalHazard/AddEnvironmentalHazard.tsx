@@ -3,7 +3,6 @@ import { Button, Modal } from "react-bootstrap";
 
 export default function AddEnvironmentalHazard() {
   const [showModal, setShowModal] = useState(false);
-
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -14,7 +13,7 @@ export default function AddEnvironmentalHazard() {
     setShowModal(false);
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: { target: { name: string; value: string; }; }) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
@@ -71,23 +70,19 @@ export default function AddEnvironmentalHazard() {
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Importance (High, Medium, Low)</label>
+          <label className="block text-gray-600 text-sm font-normal"> Importance</label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="e"
-            value={formData.username}
+            name="name"
+            value={formData.name}
             onChange={handleChange}
           >
-
           </input>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="info" onClick={handleSubmit}>
-            Add
+          <Button variant="primary" className="w-100" onClick={handleSubmit}>
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
