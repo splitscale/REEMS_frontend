@@ -9,7 +9,8 @@ import SearchEnvironmentalHazard from "./SearchEnvironmentalHazard";
 export default function EnvironmentalHazardListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [filterValue, setFilterValue] = useState("all");
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -32,7 +33,22 @@ export default function EnvironmentalHazardListTable() {
     setSearchQuery(query);
   };
 
-  const filteredEnvironmentalHazards = environmentalHazards.filter(environmentalHazard =>
+  const handleFilter = (value: string): void => {
+    setFilterValue(value);
+  }
+
+  const filteredEnvironmentalHazards = environmentalHazards.filter(environmentalHazard => {
+    if (filterValue === "all") {
+      return true;
+    } else if (filterValue === "high") {
+      return environmentalHazard.name === "Leanne Graham";
+    } else if (filterValue === "medium") {
+      return environmentalHazard.name === "Glenna Reichert";
+    } else if (filterValue === "low") {
+      return environmentalHazard.name === "Ervin Howell";
+    }
+    return false;
+  }).filter(environmentalHazard =>
     environmentalHazard.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -46,7 +62,7 @@ export default function EnvironmentalHazardListTable() {
               <AddEnvironmentalHazard />
             </div>
             <div className="d-flex flex-grow-1 justify-content-end">
-              <Filter />
+            <Filter handleFilter={handleFilter}/>
               <div className="ml-4 mr-8">
                 <SearchEnvironmentalHazard onSearch={handleSearch} />
               </div>
@@ -82,7 +98,7 @@ export default function EnvironmentalHazardListTable() {
                   <td className="border border-black">{environmentalHazard.email}</td>
                   <td className="border border-black">{environmentalHazard.name}</td>
                   <td className="border border-black text-center">
-                    <EditEnvironmentalHazardButton />
+                    <EditEnvironmentalHazardButton/>
                     <DeleteEnvironmentalHazardButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
                   </td>
                 </tr>
