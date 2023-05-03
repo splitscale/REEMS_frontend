@@ -36,7 +36,7 @@ export default function AddExpense() {
           <label className="block text-gray-600 text-sm font-normal"> Description </label>
           <input type="text" className="h-10 w-96 border mt-2 px-2 py-2"></input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Importance </label>
+          <label className="block text-gray-600 text-sm font-normal"> Importance (High, Medium, Low) </label>
           <input type="text" className="h-10 w-96 border mt-2 px-2 py-2"></input>
         </Modal.Body>
 

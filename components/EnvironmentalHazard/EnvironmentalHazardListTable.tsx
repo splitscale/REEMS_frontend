@@ -1,12 +1,40 @@
-import React from "react";
-import { environmentalHazards } from "../../lib/EHSample";
+import React, { useEffect, useState } from "react";
 import AddEnvironmentalHazard from "./AddEnvironmentalHazard";
-import SearchInput from "../Search";
 import Filter from "../Filter";
 import EditEnvironmentalHazardButton from "./EditEnvironmentalHazard";
 import DeleteEnvironmentalHazardButton from "./DeleteEnvironmentalHazard";
+import { Samp } from "../../lib/Samp";
+import SearchEnvironmentalHazard from "./SearchEnvironmentalHazard";
 
 export default function EnvironmentalHazardListTable() {
+  const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const data = await response.json();
+        setEnvironmentalHazards(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const handleDeleteEnvironmentalHazard = (id: number) => {
+    setEnvironmentalHazards(prevEnvironmentalHazards =>
+      prevEnvironmentalHazards.filter(environmentalHazard => environmentalHazard.id !== id));
+  }
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  const filteredEnvironmentalHazards = environmentalHazards.filter(environmentalHazard =>
+    environmentalHazard.username.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -20,7 +48,7 @@ export default function EnvironmentalHazardListTable() {
           <div className="d-flex flex-grow-1 justify-content-end">
             <Filter />
             <div className="ml-4 mr-8">
-              <SearchInput />
+              <SearchEnvironmentalHazard onSearch={handleSearch} />
             </div>
           </div>
         </div>
@@ -47,15 +75,15 @@ export default function EnvironmentalHazardListTable() {
           </thead>
 
           <tbody>
-            {environmentalHazards.map((environmentalHazard) => (
+            {filteredEnvironmentalHazards.map((environmentalHazard) => (
               <tr key={environmentalHazard.id}>
                 <td className="border border-black">{environmentalHazard.id}</td>
-                <td className="border border-black">{environmentalHazard.hazard}</td>
-                <td className="border border-black">{environmentalHazard.description}</td>
-                <td className="border border-black">{environmentalHazard.importance}</td>
+                <td className="border border-black">{environmentalHazard.username}</td>
+                <td className="border border-black">{environmentalHazard.email}</td>
+                <td className="border border-black">{environmentalHazard.name}</td>
                 <td className="border border-black text-center">
                   <EditEnvironmentalHazardButton />
-                  <DeleteEnvironmentalHazardButton />
+                  <DeleteEnvironmentalHazardButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
                 </td>
               </tr>
             ))}
