@@ -36,7 +36,7 @@ export default function Login() {
 
       <Image
         src="/logo.jpg"
-        className="img-thumbnail h-32 w-32 border border-white"
+        className="img-thumbnail h-32 w-32 border border-white "
         alt="logo2.jpg"
         width={200}
         height={200}
@@ -44,7 +44,7 @@ export default function Login() {
 
       <div className="row">
         <div className="col-sm-6 col-md-5 m-auto">
-          <div className="card mb-52 mt-5">
+          <div className="card mb-52 mt-5" style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}>
             <div className="card-body my-20 mx-12 ">
               <div className="d-flex justify-content-center">
                 <Image
