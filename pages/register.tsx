@@ -64,18 +64,18 @@ export default function Register() {
         <link rel="icon" href="/logo.png" />
       </Head>
 
-      <Image
-        src="/logo.jpg"
-        className="img-thumbnail w-32 h-32 border border-white"
-        alt="logo.jpg"
-        width={200}
-        height={200}
-      />
-
       <div className="row">
         <div className="col-sm-6 col-md-5 m-auto">
-          <div className="card mb-52 mt-5" style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}>
-            <div className="card-body my-20 mx-12 ">
+          <div className="card mb-52 mt-32" style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}>
+            <div className="card-body my-32 mx-16 ">
+              <Image
+                src="/logo.png"
+                className="h-32 w-32 border border-transparent rounded-full absolute top-0 end-0"
+                alt="logo.png"
+                width={200}
+                height={200}
+                style={{ marginTop: "1rem", marginRight: "1rem" }}
+              />
               <div className="d-flex justify-content-center">
                 <Image
                   src="/user-icon.png"
@@ -154,7 +154,7 @@ export default function Register() {
 
               {successMessage && (
                 <div className="text-success text-center fs-4 mt-3">{successMessage}</div>
-              )} 
+              )}
             </div>
           </div>
         </div>
