@@ -20,7 +20,7 @@ export default function EditEnvironmentalHazardButton() {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+    const response = await fetch('http://127.0.0.1:6060/collections/collectionNiSteven', {
       method: 'PUT',
       body: JSON.stringify(formData),
       headers: {

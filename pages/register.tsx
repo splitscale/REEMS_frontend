@@ -3,7 +3,6 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
-import { Card } from "react-bootstrap";
 
 export default function Register() {
   const router = useRouter()

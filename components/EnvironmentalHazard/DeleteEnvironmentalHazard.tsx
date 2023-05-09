@@ -6,7 +6,7 @@ export default function DeleteEnvironmentalHazardButton(props: { id: number, onD
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${props.id}`, {
+      const response = await fetch(`http://127.0.0.1:6060/collections/collectionNiSteven${props.id}`, {
         method: 'DELETE',
       });
       if (response.ok) {

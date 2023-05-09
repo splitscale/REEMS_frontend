@@ -14,7 +14,7 @@ export default function NavBar() {
   return (
     <Nav className="bg-gray-800 flex justify-between">
       <div className="flex justify-start">
-        <img className="w-20 h-16 pl-2 mx-1 my-2" src="logo.png" alt="logo" />
+        <img className="w-20 h-16 pl-2 mx-1 my-2" src="logo-2.png" alt="logo" />
         <Link href="/home" className="text-white rounded-md pl-8 my-auto text-2xl font-medium" aria-current="page"> Home </Link>
       </div>
 

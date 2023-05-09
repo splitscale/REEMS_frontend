@@ -4,9 +4,9 @@ import { Button, Modal } from "react-bootstrap";
 export default function AddEnvironmentalHazard() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    username: "",
-    email: "",
+    environmentalHazard: "",
+    description: "",
+    importance: "",
   });
 
   const handleClose = () => {
@@ -20,7 +20,7 @@ export default function AddEnvironmentalHazard() {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+    const response = await fetch('http://127.0.0.1:6060/collections/collectionNiSteven/environmentalHazard', {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
@@ -55,8 +55,8 @@ export default function AddEnvironmentalHazard() {
           <label className="block text-gray-600 text-sm font-normal"> Environmental Hazard </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="username"
-            value={formData.username}
+            name="environmentalHazard"
+            value={formData.environmentalHazard}
             onChange={handleChange}
           >
           </input>
@@ -64,8 +64,8 @@ export default function AddEnvironmentalHazard() {
           <label className="block text-gray-600 text-sm font-normal"> Description </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="email"
-            value={formData.email}
+            name="description"
+            value={formData.description}
             onChange={handleChange}
           >
           </input>
@@ -73,8 +73,8 @@ export default function AddEnvironmentalHazard() {
           <label className="block text-gray-600 text-sm font-normal"> Importance</label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="name"
-            value={formData.name}
+            name="importance"
+            value={formData.importance}
             onChange={handleChange}
           >
           </input>

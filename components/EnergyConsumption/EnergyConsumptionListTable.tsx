@@ -30,14 +30,14 @@ export default function EnergyConsumptionListTable() {
   return (
     <>
       <div className="mt-5 font-serif text-center text-5xl fw-bold"> Environmental Hazard </div>
-      <div className="container">
+      <div className="container-fluid">
         <div className="d-flex flex-column w-100 mx-2">
           <div className="d-flex justify-content-between align-items-center mt-5">
             <div className="ml-8">
               <AddEnergyConsumption />
             </div>
             <div className="d-flex flex-grow-1 justify-content-end">
-              <Filter />
+              {/* <Filter /> */}
               <div className="ml-4 mr-8">
                 <SearchInput />
               </div>

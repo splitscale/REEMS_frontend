@@ -2,19 +2,20 @@ import React, { useEffect, useState } from "react";
 import AddEnvironmentalHazard from "./AddEnvironmentalHazard";
 import Filter from "../Filter";
 import EditEnvironmentalHazardButton from "./EditEnvironmentalHazard";
-import DeleteEnvironmentalHazardButton from "./DeleteEnvironmentalHazard";
-import { Samp } from "../../lib/Samp";
 import SearchEnvironmentalHazard from "./SearchEnvironmentalHazard";
+import Export from "../Export";
+import { IEnvironmentalHazard } from "../../lib/IEnvironmentalHazard.";
+import DeleteEnvironmentalHazardButton from "./DeleteEnvironmentalHazard";
 
 export default function EnvironmentalHazardListTable() {
-  const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
+  const [environmentalHazards, setEnvironmentalHazards] = useState<IEnvironmentalHazard[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterValue, setFilterValue] = useState("all");
-  
+
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const response = await fetch('http://127.0.0.1:6060/collections/collectionNiSteven');
         const data = await response.json();
         setEnvironmentalHazards(data);
       } catch (error) {
@@ -37,32 +38,42 @@ export default function EnvironmentalHazardListTable() {
     setFilterValue(value);
   }
 
-  const filteredEnvironmentalHazards = environmentalHazards.filter(environmentalHazard => {
-    if (filterValue === "all") {
-      return true;
-    } else if (filterValue === "high") {
-      return environmentalHazard.name === "Leanne Graham";
-    } else if (filterValue === "medium") {
-      return environmentalHazard.name === "Glenna Reichert";
-    } else if (filterValue === "low") {
-      return environmentalHazard.name === "Ervin Howell";
-    }
-    return false;
-  }).filter(environmentalHazard =>
-    environmentalHazard.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredEnvironmentalHazards = environmentalHazards
+    .filter(environmentalHazard =>
+      environmentalHazard.importance &&
+      environmentalHazard.importance.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .filter(environmentalHazard => {
+      if (filterValue === "all") {
+        return true;
+      } else if (filterValue === "high") {
+        return environmentalHazard.importance === "high";
+      } else if (filterValue === "medium") {
+        return environmentalHazard.importance === "medium";
+      } else if (filterValue === "low") {
+        return environmentalHazard.importance === "low";
+      }
+      return false;
+    });
+
 
   return (
     <>
-      <div className="mt-5 font-serif text-center text-5xl fw-bold"> Environmental Hazard </div>
-      <div className="container">
+      <div className="container-fluid">
+        <div className="mt-5 font-serif text-center text-5xl fw-bold sm:text-4xl md:text-6xl">
+          Environmental Hazard
+        </div>
+
         <div className="d-flex flex-column w-100 mx-2">
           <div className="d-flex justify-content-between align-items-center mt-5">
             <div className="ml-8">
               <AddEnvironmentalHazard />
             </div>
             <div className="d-flex flex-grow-1 justify-content-end">
-            <Filter handleFilter={handleFilter}/>
+              <div className="mr-10">
+                <Export />
+              </div>
+              <Filter handleFilter={handleFilter} />
               <div className="ml-4 mr-8">
                 <SearchEnvironmentalHazard onSearch={handleSearch} />
               </div>
@@ -94,11 +105,11 @@ export default function EnvironmentalHazardListTable() {
               {filteredEnvironmentalHazards.map((environmentalHazard) => (
                 <tr key={environmentalHazard.id}>
                   <td className="border border-black">{environmentalHazard.id}</td>
-                  <td className="border border-black">{environmentalHazard.username}</td>
-                  <td className="border border-black">{environmentalHazard.email}</td>
-                  <td className="border border-black">{environmentalHazard.name}</td>
+                  <td className="border border-black">{environmentalHazard.environmentalHazard}</td>
+                  <td className="border border-black">{environmentalHazard.description}</td>
+                  <td className="border border-black">{environmentalHazard.importance}</td>
                   <td className="border border-black text-center">
-                    <EditEnvironmentalHazardButton/>
+                    <EditEnvironmentalHazardButton />
                     <DeleteEnvironmentalHazardButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
                   </td>
                 </tr>

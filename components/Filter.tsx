@@ -10,7 +10,7 @@ export default function Filter({ handleFilter }: FilterProps) {
   };
 
   return (
-    <div className="bi bi-filter mb-2">
+    <div className="bi bi-funnel mb-2">
       <select onChange={handleFilterChange}>
         <option value="all">All</option>
         <option value="high">High</option>
