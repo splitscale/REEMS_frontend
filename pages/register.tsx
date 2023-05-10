@@ -15,7 +15,6 @@ export default function Register() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
   const [successMessage, setSuccessMessage] = useState("");
 
   const handleRegister = async (e: FormEvent) => {
@@ -47,7 +46,7 @@ export default function Register() {
       setTimeout(() => {
         setSuccessMessage("Successfully Registered");
         router.push("/login");
-      }, 3000); // automatically clear success message and redirect after 3 seconds
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +54,7 @@ export default function Register() {
 
   return (
     <div className="container-fluid"
-      style={{ backgroundImage: "url('/background.jpeg')", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}
+      style={{ backgroundImage: "url('/bg.jpg')", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}
     >
       <Head>
         <title> REESMS </title>
@@ -65,7 +64,7 @@ export default function Register() {
 
       <div className="row">
         <div className="col-sm-6 col-md-5 m-auto">
-          <div className="card mb-52 mt-32" style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}>
+          <div className="card mb-52 mt-32" style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}>
             <div className="card-body my-32 mx-16 ">
               <Image
                 src="/logo.png"

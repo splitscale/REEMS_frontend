@@ -9,7 +9,7 @@ export default function SignOut() {
   return (
     <a className="block py-2 text-sm text-gray-700 underline" role="menuitem" id="user-menu-item-2" onClick={() => {
       logout()
-      router.push('/login')
+      router.push('/')
     }}>
       Sign Out
     </a>

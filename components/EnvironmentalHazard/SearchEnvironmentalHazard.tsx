@@ -14,7 +14,7 @@ export default function SearchEnvironmentalHazard({ onSearch }: Props) {
 
   return (
     <form onSubmit={handleSearch}>
-      <div className="input-group mb-1">
+      <div className="input-group">
         <input
           type="text"
           placeholder="Search"

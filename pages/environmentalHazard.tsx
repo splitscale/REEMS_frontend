@@ -1,10 +1,10 @@
 import EnvironmentalHazardListTable from "../components/EnvironmentalHazard/EnvironmentalHazardListTable";
-import NavBar from "../components/Navbar";
+import SideBar from "../components/SideBar";
 
 export default function EnvironmentalHazard() {
   return (
     <>
-      <NavBar/>
+      <SideBar/>
       <EnvironmentalHazardListTable/>
     </>
   );

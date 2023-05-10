@@ -29,8 +29,8 @@ export default function NavBar() {
       <Link className="flex items-center no-underline" href={"/home"}>
         <img
           className="w-10 h-5 pl-2 ml-16 my-2 bg-transparent"
-          src="dashboard.png"
-          alt="-dashboard"
+          src="dashboard-icon.png"
+          alt="-dashboard-icon"
         />
 
         <div className="text-white">

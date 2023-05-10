@@ -60,40 +60,55 @@ export default function EnvironmentalHazardListTable() {
   return (
     <>
       <div className="container-fluid">
-        <div className="mt-5 font-serif text-center text-5xl fw-bold sm:text-4xl md:text-6xl">
+        <div className="ml-72 mt-5 font-serif text-center fw-bold sm:text-2xl md:text-5xl">
           Environmental Hazard
         </div>
 
         <div className="d-flex flex-column w-100 mx-2">
           <div className="d-flex justify-content-between align-items-center mt-5">
-            <div className="ml-8">
-              <AddEnvironmentalHazard />
+            <div className="ml-80">
+            <AddEnvironmentalHazard />
             </div>
+
             <div className="d-flex flex-grow-1 justify-content-end">
-              <div className="mr-10">
-                <Export />
+            <div className="mr-4">
+                <Filter handleFilter={handleFilter} />
               </div>
-              <Filter handleFilter={handleFilter} />
-              <div className="ml-4 mr-8">
+              <div className="mr-4">
                 <SearchEnvironmentalHazard onSearch={handleSearch} />
+              </div>
+              <div className="mr-4">
+                <Export />
               </div>
             </div>
           </div>
 
-          <table className="mx-8 flex-grow-1">
+          <table className="ml-80 mr-4 flex-grow-1">
             <thead className="text-center bg-gradient-to-b from-green-500 to-green-800 text-white">
               <tr>
                 <th scope="col" className="px-6 py-3 border border-gray-900">
-                  ID
+                  #
                 </th>
                 <th scope="col" className="px-6 py-3 border border-gray-900">
-                  Environmental Hazards
+                  Title
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Category
                 </th>
                 <th scope="col" className="px-6 py-3 border border-gray-900">
                   Description
                 </th>
                 <th scope="col" className="px-6 py-3 border border-gray-900">
-                  Importance
+                  Property Name
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Reporter Name
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Priority
+                </th>
+                <th scope="col" className="px-6 py-3 border border-gray-900">
+                  Mitigation Status
                 </th>
                 <th scope="col" className="px-6 py-3 border border-gray-900">
                   Action
