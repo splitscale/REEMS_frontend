@@ -1,22 +1,16 @@
 import Link from "next/link";
-import { useState } from "react";
-import Profile from "./Profile";
 import Notification from "./Notification";
 
 export default function SideBar() {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-
-  const handleProfileClick = () => {
-    setIsProfileOpen(!isProfileOpen);
-  };
-
-  const handleNotification = () => {
-    setIsNotificationOpen(!isNotificationOpen);
-  };
 
   return (
-    <div>     
+    <div style={{
+      backgroundImage: `url('/nav-bg.png')`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      height: "100%",
+      width: "100%",
+    }} >
       <div className="fixed flex flex-col top-0 left-0 w-80 bg-white h-full"
         style={{
           backgroundImage: 'url("/nav-bg.png")',
@@ -37,7 +31,7 @@ export default function SideBar() {
               <Link href="/home" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
-                    className="h-8 pl-2 bg-transparent"
+                    className="h-7 pl-2 bg-transparent"
                     src="dashboard-icon.png"
                     alt="dashboard-icon"
                   />
@@ -56,19 +50,6 @@ export default function SideBar() {
                   />
                 </span>
                 <span className="ml-1 text-lg tracking-wide truncate">Hazards</span>
-              </Link>
-            </li>
-
-            <li className="mb-4">
-              <Link href="/energyConsumption" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
-                <span className="inline-flex justify-center items-center ml-1">
-                  <img
-                    className="h-8 pl-2 bg-transparent"
-                    src="ec-icon.png"
-                    alt="ec-icon"
-                  />
-                </span>
-                <span className="ml-1 text-lg tracking-wide truncate">Energy</span>
               </Link>
             </li>
 
@@ -99,51 +80,49 @@ export default function SideBar() {
             </li>
 
             <li className="mb-4">
-              <button className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline"
-                aria-expanded={isNotificationOpen}
-                aria-haspopup="true"
-                onClick={handleNotification}
-              >
+              <Link href="propertyInformation" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-8 pl-2 bg-transparent"
+                    src="property-icon.png"
+                    alt="property-icon"
+                  />
+                </span>
+                <span className="ml-1 text-lg tracking-wide truncate">Properties</span>
+              </Link>
+            </li>
+
+            <li className="mb-4">
+              <button className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600
+                                 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+                <span className="inline-flex justify-center items-center ml-1">
+                  <img
+                    className="h-8 pl-1 bg-transparent"
                     src="notif-icon.png"
                     alt="notif-icon"
                   />
                 </span>
                 <span className="ml-1 text-lg tracking-wide truncate">Notification</span>
               </button>
-              {isNotificationOpen && (
-                <div
-                  className="g-white rounded-md shadow-lg p-4"
-                  role="menu"
-                  aria-orientation="vertical"
-                >
-                  <Notification />
-                </div>
-              )}
             </li>
 
             <li className="mb-4">
-              <Link href="/" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+              <Link href="/settings" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 
+                                                text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-6 pl-2 bg-transparent"
-                    src="logout-icon.png"
-                    alt="logout-icon"
+                    src="setting-icon.png"
+                    alt="setting-icon"
                   />
                 </span>
-                <span className="ml-1 text-lg tracking-wide truncate">Logout</span>
+                <span className="ml-1 text-lg tracking-wide truncate">Settings</span>
               </Link>
             </li>
 
             <li className="mb-4">
-              <button className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline"
-                type="button"
-                aria-expanded={isProfileOpen}
-                aria-haspopup="true"
-                onClick={handleProfileClick}>
-
+              <span className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600
+                               hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-8 pl-2 bg-transparent"
@@ -152,14 +131,7 @@ export default function SideBar() {
                   />
                 </span>
                 <span className="ml-1 text-lg tracking-wide truncate">Profile</span>
-              </button>
-              {isProfileOpen && (
-                <div
-                  className="bg-white rounded-md shadow-lg p-4 mx-4"
-                >
-                  <Profile />
-                </div>
-              )}
+              </span>
             </li>
             <li>
 

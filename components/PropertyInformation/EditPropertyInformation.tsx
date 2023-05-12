@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-export default function EditTenantInformationButton() {
+export default function EditEnvironmentalHazardButton() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    tenantName: "",
-    propertyName: ""
+    propertyName: "",
+    location: "",
+    status: "",
   });
 
   const handleClose = () => {
@@ -44,27 +45,37 @@ export default function EditTenantInformationButton() {
         <Modal.Header closeButton>
           <Modal.Title> Update Environmental Hazard</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <label className="block text-gray-600 text-sm font-normal"> Tenant Name </label>
-          <input type="text"
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            name="tenantName"
-            value={formData.tenantName}
-            onChange={handleChange}
-          >
-          </input>
 
+        <Modal.Body>
           <label className="block text-gray-600 text-sm font-normal"> Property Name </label>
-          <select
+          <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
             name="propertyName"
             value={formData.propertyName}
             onChange={handleChange}
           >
+          </input>
+
+          <label className="block text-gray-600 text-sm font-normal">Location</label>
+          <input type="text"
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+          >
+          </input>
+
+          <label className="block text-gray-600 text-sm font-normal"> Status </label>
+          <select
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+          >
             <option> </option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-            <option value="underMaintenance">Under Maintenance</option>
+            <option value="biological">Active</option>
+            <option value="chemical">Inactive</option>
+            <option value="physical">Under Maintenance</option>
           </select>
         </Modal.Body>
 

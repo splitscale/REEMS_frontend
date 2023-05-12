@@ -1,8 +1,9 @@
 import Head from "next/head";
-import EnvironmentalHazardListTable from "../components/EnvironmentalHazard/EnvironmentalHazardListTable";
+import PropertyInformationListTable from "../components/PropertyInformation/PropertyInformationListTable";
 import SideBar from "../components/SideBar";
 
-export default function EnvironmentalHazard() {
+
+export default function PropertyInformation() {
   return (
     <>
       <div className="flex">
@@ -23,7 +24,7 @@ export default function EnvironmentalHazard() {
             backgroundSize: "cover",
             width: "100%"
           }}>
-          <EnvironmentalHazardListTable />
+          <PropertyInformationListTable />
         </div>
       </div >
     </>

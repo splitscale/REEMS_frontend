@@ -13,18 +13,18 @@ export default function Profile() {
 
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-20">
         <label htmlFor="file-input">
-          <div className="w-32 h-32 rounded-full overflow-hidden">
+          <div className="w-60 h-60 rounded-full overflow-hidden">
             <img src={imageSrc} alt="Your Profile Picture" className="w-full h-full object-cover" />
           </div>
         </label>
         <input id="file-input" type="file" accept="image/*" onChange={handleImageChange} className="sr-only" />
       </div>
 
-      <div className="p-1 my-3 mx-4 rounded-lg border border-gray-300">
-        <p className="text-left text-sm">Name:</p>
-        <p className="text-left text-sm">Email: {user.email}</p>
+      <div className="mt-12 py-8 px-12 my-20 mx-96 rounded-lg bg-gray-300">
+        <p className="text-left text-2xl">Name:</p>
+        <p className="text-left text-2xl">Email: {user.email}</p>
       </div>
     </>
   );

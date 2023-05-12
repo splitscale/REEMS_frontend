@@ -5,13 +5,25 @@ export default function SignOut() {
   const { user, logout } = useAuth()
   console.log(user)
   const router = useRouter()
-  
+
   return (
-    <a className="block py-2 text-sm text-gray-700 underline" role="menuitem" id="user-menu-item-2" onClick={() => {
-      logout()
-      router.push('/')
-    }}>
-      Sign Out
-    </a>
+    <div className="d-flex justify-content-center align-items-center">
+      <a
+        className="d-flex py-2 text-4xl text-gray-700 no-underline align-items-center"
+        role="menuitem"
+        id="user-menu-item-2"
+        onClick={() => {
+          logout()
+          router.push('/')
+        }}
+      >
+        <img
+          className="h-6 pr-2"
+          src="/logout-icon.png"
+          alt="logout-icon"
+        />
+        <span>Sign Out</span>
+      </a>
+    </div>
   )
 }

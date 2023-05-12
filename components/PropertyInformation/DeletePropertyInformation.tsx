@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function DeleteEnergyConsumptionButton(props: { id: number, onDelete: Function }) {
+export default function DeletePropertyInformationButton(props: { id: number, onDelete: Function }) {
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
@@ -23,7 +23,7 @@ export default function DeleteEnergyConsumptionButton(props: { id: number, onDel
 
   return (
     <button
-      className="bi bi-trash"
+      className="bi bi-trash text-md "
       onClick={handleDelete}
       disabled={loading}
     />

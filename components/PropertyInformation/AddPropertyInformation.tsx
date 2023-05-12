@@ -1,26 +1,26 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-export default function AddEnergyConsumption() {
+export default function AddPropertyInformation() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    energyConsumption: "",
-    description: "",
-    importance: "",
+    propertyName: "",
+    location: "",
+    status: ""
   });
 
   const handleClose = () => {
     setShowModal(false);
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: { target: { name: string; value: string; }; }) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    const response = await fetch('https://splitscale.systems:5050/api/energyconsumption/add', {
+    const response = await fetch('http://127.0.0.1:6060/collections/collectionNiSteven/environmentalHazard', {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
@@ -38,50 +38,55 @@ export default function AddEnergyConsumption() {
     <div>
       <div className="items-center mb-2">
         <Button
-          className="bi bi-plus fs-6 mt-8 w-40 bg-gradient-to-r
-                    from-yellow-400 to-yellow-800 hover:from-pink-500 hover:to-yellow-500"
-          onClick={() => setShowModal(true)}>
+          className="bi bi-plus fs-6 mt-8 w-40 text-black bg-transparent border border-black"
+          onClick={() => setShowModal(true)}
+        >
           Add Details
         </Button>
       </div>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Energy Consumption Details</Modal.Title>
+          <Modal.Title>Property Information Details</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <label className="block text-gray-600 text-sm font-normal"> Energy Consumption </label>
+          <label className="block text-gray-600 text-sm font-normal"> Property Name </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="energyConsumption"
-            value={formData.energyConsumption}
+            name="propertyName"
+            value={formData.propertyName}
             onChange={handleChange}
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Description </label>
+          <label className="block text-gray-600 text-sm font-normal"> Location </label>
           <input type="text"
-            className="h-10 w-96 border mt-2 px-2 py-2 "
-            name="description"
-            value={formData.description}
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="location"
+            value={formData.location}
             onChange={handleChange}
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Importance (High, Medium, Low) </label>
-          <input type="text"
+          <label className="block text-gray-600 text-sm font-normal"> Status </label>
+          <select
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="importance"
-            value={formData.importance}
+            name="status"
+            value={formData.status}
             onChange={handleChange}
           >
-          </input>
+            <option> </option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="underMaintenance">Under Maintenance</option>
+          </select>
+
         </Modal.Body>
 
         <Modal.Footer>
           <Button variant="primary" className="w-100" onClick={handleSubmit}>
-          Save
+            Save
           </Button>
         </Modal.Footer>
       </Modal>

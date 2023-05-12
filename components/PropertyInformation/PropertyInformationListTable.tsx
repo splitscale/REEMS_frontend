@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Export from "../Export";
 import { Samp } from "../../lib/Samp";
-import AddTenantInformation from "./AddTenantInformation";
-import FilterTenantProperty from "./FilterTenantProperty";
-import SearchPropertyInformation from "../PropertyInformation/SearchPropertyInformation";
-import EditTenantInformationButton from "./EditTenantInformation";
-import DeleteTenantInformationButton from "./DeleteTenantInformation";
+import AddPropertyInformation from "./AddPropertyInformation";
+import FilterPropertyName from "./FilterPropertyStatus";
+import SearchPropertyInformation from "./SearchPropertyInformation";
+import DeletePropertyInformationButton from "./DeletePropertyInformation";
+import EditPropertyInformation from "./EditPropertyInformation"
 
-export default function TenantInformationListTable() {
+export default function PropertyInformationListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterValue, setFilterValue] = useState("all");
@@ -61,18 +61,18 @@ export default function TenantInformationListTable() {
     <>
       <div className="container-fluid">
         <div className="mt-5 font-serif text-center fw-bold sm:text-3xl md:text-6xl">
-          Tenant Information
+          Property Information
         </div>
 
         <div className="d-flex flex-column w-100 mx-2">
           <div className="d-flex justify-content-between align-items-center mt-5">
             <div className="ml-16">
-              <AddTenantInformation />
+              <AddPropertyInformation />
             </div>
 
             <div className="d-flex flex-grow-1 justify-content-end">
               <div className="mr-4">
-                <FilterTenantProperty handleFilter={handleFilter} />
+                <FilterPropertyName handleFilter={handleFilter} />
               </div>
               <div className="mr-4">
                 <SearchPropertyInformation onSearch={handleSearch} />
@@ -90,10 +90,13 @@ export default function TenantInformationListTable() {
                   #
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  Tenant Name
+                  PropertyName
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  Property Name
+                  Location
+                </th>
+                <th scope="col" className="py-3 border border-gray-800">
+                  Status
                 </th>
                 <th scope="col" className="py-3 px-2 border border-gray-800">
                   Action
@@ -106,10 +109,11 @@ export default function TenantInformationListTable() {
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.id}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
+                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-2 text-center">
                     <div className="d-flex justify-content-center">
-                      <EditTenantInformationButton />
-                      <DeleteTenantInformationButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
+                      <EditPropertyInformation />
+                      <DeletePropertyInformationButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
                     </div>
                   </td>
                 </tr>

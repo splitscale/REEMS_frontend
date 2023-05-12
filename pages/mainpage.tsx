@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import LandingNavBar from '../components/LandingNavbar'
+import NavBar from '../components/Navbar'
 
 export default function MainPage() {
   return (
@@ -10,24 +10,24 @@ export default function MainPage() {
         <link rel="icon" href="/logo-2.png" />
       </Head>
 
-      <LandingNavBar />
+      <NavBar />
 
       <div className="container-fluid mx-auto bg-cover bg-center min-h-screen min-w-screen"
         style={{ backgroundImage: "url('/main-bg.jpg')", backgroundColor: "#fff" }}>
 
-        <div className="container-fluid mx-auto flex flex-wrap min-h-screen min-w-screen ">
-          <div className="card ml-52 my-auto" style={{ backgroundColor: "rgba(255, 255, 255, 0.5)", boxShadow: "0px 20px 20px rgba(0, 0, 0, 0.5)" }}>
-            <div className="card-body my-32 mx-12">
+        <div className="container mx-auto flex flex-wrap min-h-screen min-w-screen ml-80 items-center">
+          <div className="card m-8 sm:m-0" style={{ backgroundColor: "rgba(255, 255, 255, 0.5)", boxShadow: "0px 20px 20px rgba(0, 0, 0, 0.5)" }}>
+            <div className="card-body my-12 sm:my-32 mx-6 sm:mx-12">
 
-              <div className="text text-7xl mb-28">
+              <div className=" text text-5xl sm:text-7xl mb-16 sm:mb-28 text-center">
                 <div style={{ fontFamily: 'cursive' }}> Manage Real Estate</div>
                 <div style={{ fontFamily: 'cursive' }}> and Environment </div>
               </div>
 
-              <div className="text text-2xl">
+              <div className="text text-lg sm:text-2xl">
                 Reems provides the ease of managing multiple properties
               </div>
-              <div className="text text-2xl">
+              <div className="text text-lg sm:text-2xl">
                 and keeping track of your surrounding environment.
               </div>
             </div>

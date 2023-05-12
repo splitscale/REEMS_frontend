@@ -4,9 +4,13 @@ import { Button, Modal } from "react-bootstrap";
 export default function AddEnvironmentalHazard() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    environmentalHazard: "",
+    title: "",
+    category: "",
     description: "",
-    importance: "",
+    propertyName: "",
+    reporterName: "",
+    priority: "",
+    mitigationStatus: ""
   });
 
   const handleClose = () => {
@@ -38,8 +42,7 @@ export default function AddEnvironmentalHazard() {
     <div>
       <div className="items-center mb-2">
         <Button
-          className="bi bi-plus fs-6 mt-8 w-40 bg-gradient-to-r
-                    from-green-500 to-green-800 hover:from-pink-500 hover:to-yellow-500"
+          className="bi bi-plus fs-6 mt-8 w-40 text-black bg-transparent border border-black"
           onClick={() => setShowModal(true)}
         >
           Add Details
@@ -52,16 +55,29 @@ export default function AddEnvironmentalHazard() {
         </Modal.Header>
 
         <Modal.Body>
-          <label className="block text-gray-600 text-sm font-normal"> Environmental Hazard </label>
+          <label className="block text-gray-600 text-sm font-normal"> Title </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="environmentalHazard"
-            value={formData.environmentalHazard}
+            name="title"
+            value={formData.title}
             onChange={handleChange}
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Description </label>
+          <label className="block text-gray-600 text-sm font-normal"> Category </label>
+          <select
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+          >
+            <option> </option>
+            <option value="biological">Biological</option>
+            <option value="chemical">Chemical</option>
+            <option value="physical">Physical</option>
+          </select>
+
+          <label className="block text-gray-600 text-sm font-normal">Description</label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
             name="description"
@@ -70,14 +86,49 @@ export default function AddEnvironmentalHazard() {
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Importance</label>
+          <label className="block text-gray-600 text-sm font-normal">Property Name</label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="importance"
-            value={formData.importance}
+            name="propertyName"
+            value={formData.propertyName}
             onChange={handleChange}
           >
           </input>
+
+          <label className="block text-gray-600 text-sm font-normal"> Reporter Name </label>
+          <input type="text"
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="reporterName"
+            value={formData.reporterName}
+            onChange={handleChange}
+          >
+          </input>
+
+          <label className="block text-gray-600 text-sm font-normal"> Risk Level </label>
+          <select
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="priority"
+            value={formData.priority}
+            onChange={handleChange}
+          >
+            <option> </option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+
+          <label className="block text-gray-600 text-sm font-normal"> Mitigation Status</label>
+          <select
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="mitigationStatus"
+            value={formData.mitigationStatus}
+            onChange={handleChange}
+          >
+            <option> </option>
+            <option value="inProgress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+
         </Modal.Body>
 
         <Modal.Footer>
