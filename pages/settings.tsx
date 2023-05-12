@@ -31,7 +31,7 @@ export default function Settings() {
         >
           <div className="d-flex align-items-center justify-content-center h-100">
             <div className="card">
-              <div className="card-body">
+              <div className="card-body bg-white">
                 <Profile />
                 <SignOut />
               </div>

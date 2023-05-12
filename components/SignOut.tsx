@@ -8,7 +8,7 @@ export default function SignOut() {
 
   return (
     <div className="d-flex justify-content-center align-items-center">
-      <a
+      <button
         className="d-flex py-2 text-4xl text-gray-700 no-underline align-items-center"
         role="menuitem"
         id="user-menu-item-2"
@@ -17,13 +17,8 @@ export default function SignOut() {
           router.push('/')
         }}
       >
-        <img
-          className="h-6 pr-2"
-          src="/logout-icon.png"
-          alt="logout-icon"
-        />
-        <span>Sign Out</span>
-      </a>
+        <span className="text-red-500">Sign Out</span>
+      </button>
     </div>
   )
 }

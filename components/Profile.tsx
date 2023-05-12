@@ -18,13 +18,22 @@ export default function Profile() {
           <div className="w-60 h-60 rounded-full overflow-hidden">
             <img src={imageSrc} alt="Your Profile Picture" className="w-full h-full object-cover" />
           </div>
+
         </label>
         <input id="file-input" type="file" accept="image/*" onChange={handleImageChange} className="sr-only" />
+
+        <div className="text-2xl mb-20 mt-1">
+          Profile Photo
+        </div>
       </div>
 
-      <div className="mt-12 py-8 px-12 my-20 mx-96 rounded-lg bg-gray-300">
-        <p className="text-left text-2xl">Name:</p>
-        <p className="text-left text-2xl">Email: {user.email}</p>
+      <div className="card mb-8">
+        <div className="card-body bg-white">
+          <div className="mt-4 my-8 mx-40 rounded-lg">
+            <p className="text-xl">Name: </p>
+            <p className="text-xl">Email Address: {user.email}</p>
+          </div>
+        </div>
       </div>
     </>
   );
