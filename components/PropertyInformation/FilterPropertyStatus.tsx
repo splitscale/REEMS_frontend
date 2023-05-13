@@ -13,9 +13,9 @@ export default function FilterPropertyName({ handleFilter }: FilterProps) {
     <div className="bi bi-funnel mb-2">
       <select onChange={handleFilterChange}>
         <option value="all">All</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+        <option value="underMaintenance">Under Maintenance</option>
       </select>
     </div>
   );

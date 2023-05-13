@@ -9,7 +9,7 @@ export default function SignOut() {
   return (
     <div className="d-flex justify-content-center align-items-center">
       <button
-        className="d-flex py-2 text-4xl text-gray-700 no-underline align-items-center"
+        className="d-flex py-2 text-4xl text-gray-700 no-underline align-items-center border border-red rounded-xl px-2"
         role="menuitem"
         id="user-menu-item-2"
         onClick={() => {

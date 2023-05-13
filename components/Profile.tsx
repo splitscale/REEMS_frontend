@@ -12,7 +12,7 @@ export default function Profile() {
   }
 
   return (
-    <>
+    <div>
       <div className="flex flex-col items-center mt-20">
         <label htmlFor="file-input">
           <div className="w-60 h-60 rounded-full overflow-hidden">
@@ -35,6 +35,6 @@ export default function Profile() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

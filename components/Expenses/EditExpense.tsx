@@ -4,11 +4,8 @@ import { Button, Modal } from "react-bootstrap";
 export default function EditExpenseButton() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    expenseCategory: "",
-    electricityRate: "",
-    expenseAmount: "",
-    propertyName: "",
-    tenantName: "",
+    date: "",
+    expense:""
   });
 
   const handleClose = () => {
@@ -50,55 +47,23 @@ export default function EditExpenseButton() {
         </Modal.Header>
 
         <Modal.Body>
-          <label className="block text-gray-600 text-sm font-normal"> Expense Category </label>
-          <select
+        <label className="block text-gray-600 text-sm font-normal"> Date </label>
+          <input type="date"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="expenseCategory"
-            value={formData.expenseCategory}
-            onChange={handleChange}
-          >
-            <option> </option>
-            <option value="electricity">Electricity </option>
-            <option value="mitigation">Mitigation</option>
-
-          </select>
-
-          <label className="block text-gray-600 text-sm font-normal"> Electricity Rate (kw/hr)</label>
-          <input type="text"
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            name="electricityRate"
-            value={formData.electricityRate}
+            name="date"
+            value={formData.date}
             onChange={handleChange}
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Expense Amount(Peso) </label>
+          <label className="block text-gray-600 text-sm font-normal"> Expense </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="reporterName"
-            value={formData.expenseAmount}
+            name="expense"
+            value={formData.expense}
             onChange={handleChange}
           >
           </input>
-
-          <label className="block text-gray-600 text-sm font-normal">Property Name</label>
-          <input type="text"
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            name="propertyName"
-            value={formData.propertyName}
-            onChange={handleChange}
-          >
-          </input>
-
-          <label className="block text-gray-600 text-sm font-normal"> Tenant's Name</label>
-          <input type="text"
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            name="tenantName"
-            value={formData.tenantName}
-            onChange={handleChange}
-          >
-          </input>
-
         </Modal.Body>
 
         <Modal.Footer>

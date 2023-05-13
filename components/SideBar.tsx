@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Notification from "./Notification";
 
 export default function SideBar() {
 
@@ -10,13 +9,15 @@ export default function SideBar() {
       backgroundSize: "cover",
       height: "100%",
       width: "100%",
-    }} >
+    }}>
+
       <div className="fixed flex flex-col top-0 left-0 w-80 bg-white h-full"
         style={{
           backgroundImage: 'url("/nav-bg.png")',
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}>
+
         <div className="flex items-center justify-start h-20 border-b" >
           <img
             className="w-20 h-16 pl-2 mx-1"
@@ -28,7 +29,8 @@ export default function SideBar() {
           <ul className="flex flex-col py-5 space-y-1">
 
             <li className="mb-4">
-              <Link href="/home" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+              <Link href="/home" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600
+                          hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-7 pl-2 bg-transparent"
@@ -41,7 +43,8 @@ export default function SideBar() {
             </li>
 
             <li className="mb-4">
-              <Link href="/environmentalHazard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+              <Link href="/environmentalHazard" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50
+                          text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-8 pl-2 bg-transparent"
@@ -49,12 +52,41 @@ export default function SideBar() {
                     alt="eh-icon"
                   />
                 </span>
-                <span className="ml-1 text-lg tracking-wide truncate">Hazards</span>
+                <span className="ml-1 text-lg tracking-wide truncate">Environmental Hazards</span>
               </Link>
             </li>
 
             <li className="mb-4">
-              <Link href="/expense" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+              <Link href="/energyConsumption" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50
+                          text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+                <span className="inline-flex justify-center items-center ml-1">
+                  <img
+                    className="h-8 pl-2 bg-transparent"
+                    src="ec-icon.png"
+                    alt="ec-icon"
+                  />
+                </span>
+                <span className="ml-1 text-lg tracking-wide truncate">Energy Consumption</span>
+              </Link>
+            </li>
+
+            <li className="mb-4">
+              <Link href="/mitigation" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50
+                          text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+                <span className="inline-flex justify-center items-center ml-1">
+                  <img
+                    className="h-8 pl-2 bg-transparent"
+                    src="mitigation-icon.png"
+                    alt="mitigation-icon"
+                  />
+                </span>
+                <span className="ml-1 text-lg tracking-wide truncate">Mitigation</span>
+              </Link>
+            </li>
+
+            <li className="mb-4">
+              <Link href="/expense" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600
+                           hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-8 pl-2 bg-transparent"
@@ -67,7 +99,8 @@ export default function SideBar() {
             </li>
 
             <li className="mb-4">
-              <Link href="tenantInformation" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+              <Link href="/tenantInformation" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50
+                           text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-8 pl-2 bg-transparent"
@@ -80,7 +113,8 @@ export default function SideBar() {
             </li>
 
             <li className="mb-4">
-              <Link href="propertyInformation" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
+              <Link href="/propertyInformation" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50
+                          text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6 no-underline">
                 <span className="inline-flex justify-center items-center ml-1">
                   <img
                     className="h-8 pl-2 bg-transparent"
@@ -132,9 +166,6 @@ export default function SideBar() {
                 </span>
                 <span className="ml-1 text-lg tracking-wide truncate">Profile</span>
               </span>
-            </li>
-            <li>
-
             </li>
           </ul>
         </div>

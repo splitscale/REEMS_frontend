@@ -1,5 +1,5 @@
-import MainPage from "./mainpage";
+import LandingPage from "./landingPage";
 
 export default function Index() {
-  return <MainPage />;
+  return <LandingPage />;
 };

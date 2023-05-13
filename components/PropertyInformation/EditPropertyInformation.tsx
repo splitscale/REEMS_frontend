@@ -43,7 +43,7 @@ export default function EditEnvironmentalHazardButton() {
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title> Update Environmental Hazard</Modal.Title>
+          <Modal.Title> Update Property Information </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -73,8 +73,8 @@ export default function EditEnvironmentalHazardButton() {
             onChange={handleChange}
           >
             <option> </option>
-            <option value="biological">Active</option>
-            <option value="chemical">Inactive</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
             <option value="physical">Under Maintenance</option>
           </select>
         </Modal.Body>

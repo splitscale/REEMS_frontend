@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-export default function AddExpense() {
+export default function EditEnergyConsumptionButton() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    date: "",  
-    expense: ""
+    date: "",
+    propertyName: "",
+    usage: ""
   });
 
   const handleClose = () => {
@@ -19,34 +20,28 @@ export default function AddExpense() {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    const response = await fetch('http://127.0.0.1:6060/collections/collectionNiSteven/environmentalHazard', {
-      method: 'POST',
+    const response = await fetch('http://127.0.0.1:6060/collections/collectionNiSteven', {
+      method: 'PUT',
       body: JSON.stringify(formData),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
     });
-
     const json = await response.json();
     console.log(json);
-
     handleClose();
   }
 
   return (
-    <div>
-      <div className="items-center mb-2">
-        <Button
-          className="bi bi-plus fs-6 mt-8 w-40 text-black bg-transparent border border-black"
-          onClick={() => setShowModal(true)}
-        >
-          Add Details
-        </Button>
-      </div>
+    <>
+      <button
+        className="bi bi-pencil-square"
+        onClick={() => setShowModal(true)}
+      />
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Expense Details</Modal.Title>
+          <Modal.Title> Update Energy Consumption</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -59,11 +54,20 @@ export default function AddExpense() {
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Expense </label>
+          <label className="block text-gray-600 text-sm font-normal"> Property Name </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="expense"
-            value={formData.expense}
+            name="propertName"
+            value={formData.propertyName}
+            onChange={handleChange}
+          >
+          </input>
+
+          <label className="block text-gray-600 text-sm font-normal">Usage</label>
+          <input type="text"
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="usage"
+            value={formData.usage}
             onChange={handleChange}
           >
           </input>
@@ -75,6 +79,6 @@ export default function AddExpense() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
-};
+}

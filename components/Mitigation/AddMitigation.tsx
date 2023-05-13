@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-export default function AddExpense() {
+export default function AddMitigation() {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    date: "",  
-    expense: ""
+    date: "",
+    task: "",
+    cost: ""
   });
 
   const handleClose = () => {
@@ -46,12 +47,12 @@ export default function AddExpense() {
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Expense Details</Modal.Title>
+          <Modal.Title>Mitigation Details</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <label className="block text-gray-600 text-sm font-normal"> Date </label>
-          <input type="date"
+          <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
             name="date"
             value={formData.date}
@@ -59,11 +60,20 @@ export default function AddExpense() {
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Expense </label>
+          <label className="block text-gray-600 text-sm font-normal"> Task </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="expense"
-            value={formData.expense}
+            name="task"
+            value={formData.task}
+            onChange={handleChange}
+          >
+          </input>
+
+          <label className="block text-gray-600 text-sm font-normal"> Cost </label>
+          <input type="text"
+            className="h-10 w-96 border mt-2 px-2 py-2"
+            name="cost"
+            value={formData.cost}
             onChange={handleChange}
           >
           </input>

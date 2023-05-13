@@ -8,8 +8,7 @@ export default function AddEnvironmentalHazard() {
     category: "",
     description: "",
     propertyName: "",
-    reporterName: "",
-    priority: "",
+    riskLevel: "",
     mitigationStatus: ""
   });
 
@@ -31,10 +30,8 @@ export default function AddEnvironmentalHazard() {
         'Content-type': 'application/json; charset=UTF-8',
       },
     });
-
     const json = await response.json();
     console.log(json);
-
     handleClose();
   }
 
@@ -95,20 +92,11 @@ export default function AddEnvironmentalHazard() {
           >
           </input>
 
-          <label className="block text-gray-600 text-sm font-normal"> Reporter Name </label>
-          <input type="text"
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            name="reporterName"
-            value={formData.reporterName}
-            onChange={handleChange}
-          >
-          </input>
-
           <label className="block text-gray-600 text-sm font-normal"> Risk Level </label>
           <select
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="priority"
-            value={formData.priority}
+            name="riskLevel"
+            value={formData.riskLevel}
             onChange={handleChange}
           >
             <option> </option>

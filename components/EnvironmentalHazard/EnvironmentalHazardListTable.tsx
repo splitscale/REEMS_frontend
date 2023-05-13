@@ -47,11 +47,11 @@ export default function EnvironmentalHazardListTable() {
       if (filterValue === "all") {
         return true;
       } else if (filterValue === "high") {
-        return environmentalHazard.username === "high";
+        return environmentalHazard.username === "Kamren";
       } else if (filterValue === "medium") {
-        return environmentalHazard.username === "medium";
+        return environmentalHazard.username === "Bret";
       } else if (filterValue === "low") {
-        return environmentalHazard.username === "low";
+        return environmentalHazard.username === "Samantha";
       }
       return false;
     });
@@ -102,9 +102,6 @@ export default function EnvironmentalHazardListTable() {
                   Property Name
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  Reporter Name
-                </th>
-                <th scope="col" className="py-3 border border-gray-800">
                   Risk Level
                 </th>
                 <th scope="col" className="py-3  border border-gray-800">
@@ -118,13 +115,12 @@ export default function EnvironmentalHazardListTable() {
             <tbody>
               {filteredEnvironmentalHazards.map((environmentalHazard) => (
                 <tr key={environmentalHazard.id}>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.id}</td>
+                  <td className="border border-green-500 bg-white py-3 px-4 text-center">{environmentalHazard.id}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.email}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.name}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.name}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-2 text-center">
                     <div className="d-flex justify-content-center">
@@ -136,7 +132,6 @@ export default function EnvironmentalHazardListTable() {
               ))}
             </tbody>
           </table>
-
         </div>
       </div>
     </>

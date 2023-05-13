@@ -1,8 +1,9 @@
 import Head from "next/head";
-import ExpenseListTable from "../components/Expenses/ExpenseListTable";
 import SideBar from "../components/SideBar";
+import EnergyConsumptionListTable from "../components/EnergyConsumption/EnergyConsumptionListTable";
+import MitigationListTable from "../components/Mitigation/MitigationListTable";
 
-export default function Expense() {
+export default function Mitigation() {
   return (
     <div className="flex">
       <Head>
@@ -22,8 +23,8 @@ export default function Expense() {
           backgroundSize: "cover",
           width: "100%"
         }}>
-        <ExpenseListTable />
+        <MitigationListTable />
       </div>
-    </div>
+    </div >
   );
 }

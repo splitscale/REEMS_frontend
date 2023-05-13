@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import NavBar from '../components/Navbar'
 
-export default function MainPage() {
+export default function LandingPage() {
   return (
     <div>
       <Head>
@@ -16,9 +16,9 @@ export default function MainPage() {
         style={{ backgroundImage: "url('/main-bg.jpg')", backgroundColor: "#fff" }}>
 
         <div className="container mx-auto flex flex-wrap min-h-screen min-w-screen ml-80 items-center">
-          <div className="card m-8 sm:m-0" style={{ backgroundColor: "rgba(255, 255, 255, 0.5)", boxShadow: "0px 20px 20px rgba(0, 0, 0, 0.5)" }}>
+          <div className="card m-8 sm:m-0"
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.5)", boxShadow: "0px 20px 20px rgba(0, 0, 0, 0.5)" }}>
             <div className="card-body my-12 sm:my-32 mx-6 sm:mx-12">
-
               <div className=" text text-5xl sm:text-7xl mb-16 sm:mb-28 text-center">
                 <div style={{ fontFamily: 'cursive' }}> Manage Real Estate</div>
                 <div style={{ fontFamily: 'cursive' }}> and Environment </div>

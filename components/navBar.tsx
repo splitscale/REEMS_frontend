@@ -17,7 +17,11 @@ export default function NavBar() {
           className="w-20 h-16 pl-2 mx-1"
           src="logo-2.png"
           alt="logo" />
-        <span className="text-2xl" style={{ fontFamily: 'cursive' }}>Reems</span>
+
+        <span className="text-2xl" style={{ fontFamily: 'cursive' }}>
+          Reems
+        </span>
+
       </div><div className="flex items-center ml-auto">
         <Link className="relative" href={"/login"}>
           <button type="button" className="btn btn-light">

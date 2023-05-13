@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Export from "../Export";
 import { Samp } from "../../lib/Samp";
 import AddTenantInformation from "./AddTenantInformation";
-import FilterTenantProperty from "./FilterTenantProperty";
 import SearchPropertyInformation from "../PropertyInformation/SearchPropertyInformation";
 import EditTenantInformationButton from "./EditTenantInformation";
 import DeleteTenantInformationButton from "./DeleteTenantInformation";
@@ -10,7 +9,6 @@ import DeleteTenantInformationButton from "./DeleteTenantInformation";
 export default function TenantInformationListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterValue, setFilterValue] = useState("all");
 
   useEffect(() => {
     async function fetchData() {
@@ -34,28 +32,11 @@ export default function TenantInformationListTable() {
     setSearchQuery(query);
   };
 
-  const handleFilter = (value: string): void => {
-    setFilterValue(value);
-  }
-
   const filteredEnvironmentalHazards = environmentalHazards
     .filter(environmentalHazard =>
       environmentalHazard.username &&
       environmentalHazard.username.toLowerCase().includes(searchQuery.toLowerCase())
     )
-    .filter(environmentalHazard => {
-      if (filterValue === "all") {
-        return true;
-      } else if (filterValue === "high") {
-        return environmentalHazard.username === "high";
-      } else if (filterValue === "medium") {
-        return environmentalHazard.username === "medium";
-      } else if (filterValue === "low") {
-        return environmentalHazard.username === "low";
-      }
-      return false;
-    });
-
 
   return (
     <>
@@ -71,9 +52,6 @@ export default function TenantInformationListTable() {
             </div>
 
             <div className="d-flex flex-grow-1 justify-content-end">
-              <div className="mr-4">
-                <FilterTenantProperty handleFilter={handleFilter} />
-              </div>
               <div className="mr-4">
                 <SearchPropertyInformation onSearch={handleSearch} />
               </div>
@@ -103,7 +81,7 @@ export default function TenantInformationListTable() {
             <tbody>
               {filteredEnvironmentalHazards.map((environmentalHazard) => (
                 <tr key={environmentalHazard.id}>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.id}</td>
+                  <td className="border border-green-500 bg-white py-3 px-4 text-center">{environmentalHazard.id}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
                   <td className="border border-green-500 bg-white py-3 px-2 text-center">

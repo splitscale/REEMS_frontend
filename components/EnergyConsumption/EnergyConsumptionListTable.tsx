@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Export from "../Export";
 import { Samp } from "../../lib/Samp";
-import AddPropertyInformation from "./AddPropertyInformation";
-import FilterPropertyName from "./FilterPropertyStatus";
-import SearchPropertyInformation from "./SearchPropertyInformation";
-import DeletePropertyInformationButton from "./DeletePropertyInformation";
-import EditPropertyInformation from "./EditPropertyInformation"
+import AddEnergyConsumption from "./AddEnergyConsumption";
+import SearchEnergyConsumption from "./SearchEnergyConsumption";
+import EditEnergyConsumptionButton from "./EditEnergyConsumption";
+import DeleteEnergyConsumptionButton from "./DeleteEnergyConsumption";
 
-export default function PropertyInformationListTable() {
+export default function EnergyConsumptionListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterValue, setFilterValue] = useState("all");
 
   useEffect(() => {
     async function fetchData() {
@@ -34,47 +32,28 @@ export default function PropertyInformationListTable() {
     setSearchQuery(query);
   };
 
-  const handleFilter = (value: string): void => {
-    setFilterValue(value);
-  }
-
   const filteredEnvironmentalHazards = environmentalHazards
     .filter(environmentalHazard =>
       environmentalHazard.username &&
       environmentalHazard.username.toLowerCase().includes(searchQuery.toLowerCase())
     )
-    .filter(environmentalHazard => {
-      if (filterValue === "all") {
-        return true;
-      } else if (filterValue === "active") {
-        return environmentalHazard.username === "Kamren";
-      } else if (filterValue === "inactive") {
-        return environmentalHazard.username === "Samantha";
-      } else if (filterValue === "underMaintenance") {
-        return environmentalHazard.username === "Bret";
-      }
-      return false;
-    });
 
   return (
     <>
       <div className="container-fluid">
         <div className="mt-5 font-serif text-center fw-bold sm:text-3xl md:text-6xl">
-          Property Information
+          Energy Consumption
         </div>
 
         <div className="d-flex flex-column w-100 mx-2">
           <div className="d-flex justify-content-between align-items-center mt-5">
             <div className="ml-16">
-              <AddPropertyInformation />
+              <AddEnergyConsumption />
             </div>
 
             <div className="d-flex flex-grow-1 justify-content-end">
               <div className="mr-4">
-                <FilterPropertyName handleFilter={handleFilter} />
-              </div>
-              <div className="mr-4">
-                <SearchPropertyInformation onSearch={handleSearch} />
+                <SearchEnergyConsumption onSearch={handleSearch} />
               </div>
               <div className="mr-4">
                 <Export />
@@ -85,19 +64,22 @@ export default function PropertyInformationListTable() {
           <table className="ml-16 mr-4 flex-grow-1 border-collapse">
             <thead className="text-center bg-gray-700 text-white">
               <tr>
-                <th scope="col" className="py-3 ">
-                  #
+                <th scope="col" className="py-3">
+                  Date
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  PropertyName
+                  Property
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  Location
+                  Usage
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  Status
+                  Consumed
                 </th>
-                <th scope="col" className="py-3 px-2 border border-gray-800">
+                <th scope="col" className="py-3 border border-gray-800">
+                  Amount
+                </th>
+                <th scope="col" className="py-3 border border-gray-800">
                   Action
                 </th>
               </tr>
@@ -105,21 +87,21 @@ export default function PropertyInformationListTable() {
             <tbody>
               {filteredEnvironmentalHazards.map((environmentalHazard) => (
                 <tr key={environmentalHazard.id}>
-                  <td className="border border-green-500 bg-white py-3 px-4 text-center">{environmentalHazard.id}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
-                  <td className="border border-green-500 bg-white py-3 px-2 text-center">
+                  <td className="bg-white py-3 px-4 text-center">{environmentalHazard.id}</td>
+                  <td className="bg-white py-3 px-4 text-center">{environmentalHazard.username}</td>
+                  <td className="bg-white py-3 px-4 text-center">{environmentalHazard.username}</td>
+                  <td className="bg-white py-3 px-4 text-center">{environmentalHazard.username}</td>
+                  <td className="bg-white py-3 px-4 text-center">{environmentalHazard.username}</td>
+                  <td className="bg-white py-3 text-center">
                     <div className="d-flex justify-content-center">
-                      <EditPropertyInformation />
-                      <DeletePropertyInformationButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
+                      <EditEnergyConsumptionButton />
+                      <DeleteEnergyConsumptionButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
                     </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-
         </div>
       </div>
     </>

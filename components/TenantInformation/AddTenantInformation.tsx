@@ -53,24 +53,21 @@ export default function AddTenantInformation() {
           <label className="block text-gray-600 text-sm font-normal"> Tenant Name </label>
           <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="propertyName"
+            name="tenantName"
             value={formData.tenantName}
             onChange={handleChange}
           >
           </input>
 
           <label className="block text-gray-600 text-sm font-normal"> Property Name </label>
-          <select
+          <input type="text"
             className="h-10 w-96 border mt-2 px-2 py-2"
-            name="status"
+            name="PropertyName"
             value={formData.propertyName}
             onChange={handleChange}
           >
-            <option> </option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-            <option value="underMaintenance">Under Maintenance</option>
-          </select>
+          </input>
+
         </Modal.Body>
 
         <Modal.Footer>

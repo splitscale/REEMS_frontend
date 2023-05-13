@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import Export from "../Export";
 import { Samp } from "../../lib/Samp";
 import AddExpense from "./AddExpense";
-import FilterExpenseCategory from "./FilterExpenses";
 import SearchExpense from "./SearchExpense";
 import EditExpenseButton from "./EditExpense";
 import DeleteExpenseButton from "./DeleteExpense";
 
-
 export default function ExpenseListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterValue, setFilterValue] = useState("all");
 
   useEffect(() => {
     async function fetchData() {
@@ -35,28 +32,11 @@ export default function ExpenseListTable() {
     setSearchQuery(query);
   };
 
-  const handleFilter = (value: string): void => {
-    setFilterValue(value);
-  }
-
   const filteredEnvironmentalHazards = environmentalHazards
     .filter(environmentalHazard =>
       environmentalHazard.username &&
       environmentalHazard.username.toLowerCase().includes(searchQuery.toLowerCase())
     )
-    .filter(environmentalHazard => {
-      if (filterValue === "all") {
-        return true;
-      } else if (filterValue === "high") {
-        return environmentalHazard.username === "high";
-      } else if (filterValue === "medium") {
-        return environmentalHazard.username === "medium";
-      } else if (filterValue === "low") {
-        return environmentalHazard.username === "low";
-      }
-      return false;
-    });
-
 
   return (
     <>
@@ -73,9 +53,6 @@ export default function ExpenseListTable() {
 
             <div className="d-flex flex-grow-1 justify-content-end">
               <div className="mr-4">
-                <FilterExpenseCategory handleFilter={handleFilter} />
-              </div>
-              <div className="mr-4">
                 <SearchExpense onSearch={handleSearch} />
               </div>
               <div className="mr-4">
@@ -88,24 +65,12 @@ export default function ExpenseListTable() {
             <thead className="text-center bg-gray-700 text-white">
               <tr>
                 <th scope="col" className="py-3">
-                  #
+                  Date
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  Expense Category
+                  Expense
                 </th>
                 <th scope="col" className="py-3 border border-gray-800">
-                  Electricity Rate (kw/hr)
-                </th>
-                <th scope="col" className="py-3 border border-gray-800">
-                  Expense Amount (Peso)
-                </th>
-                <th scope="col" className="py-3 border border-gray-800">
-                  Property Name
-                </th>
-                <th scope="col" className="py-3 border border-gray-800">
-                  Tenant's Name
-                </th>
-                <th scope="col" className="py-3 px-2 border border-gray-800">
                   Action
                 </th>
               </tr>
@@ -113,13 +78,9 @@ export default function ExpenseListTable() {
             <tbody>
               {filteredEnvironmentalHazards.map((environmentalHazard) => (
                 <tr key={environmentalHazard.id}>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.id}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.name}</td>
-                  <td className="border border-green-500 bg-white py-3 px-4">{environmentalHazard.username}</td>
-                  <td className="border border-green-500 bg-white py-3 text-center">
+                  <td className="bg-white py-3 px-4 text-center">{environmentalHazard.id}</td>
+                  <td className="bg-white py-3 px-4 text-center">{environmentalHazard.username}</td>
+                  <td className="bg-white py-3 text-center">
                     <div className="d-flex justify-content-center">
                       <EditExpenseButton />
                       <DeleteExpenseButton id={environmentalHazard.id} onDelete={handleDeleteEnvironmentalHazard} />
