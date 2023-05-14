@@ -1,6 +1,8 @@
 import Head from 'next/head'
 
 import SideBar from '../components/SideBar'
+import EnvironmentalHazard from './environmentalHazard'
+import DashboardListTable from '../components/DashboardListTable'
 
 export default function Home() {
   return (
@@ -23,35 +25,64 @@ export default function Home() {
           width: "100%"
         }}>
 
-        <div className="grid grid-cols-2 mt-20 ml-80 mb-12">
-          <div className="card rounded-xl w-96 mb-12">
-            <div className="card-body my-12">
-              <h2 className="text-2xl text-center"> Total Energy Consumed: </h2>
+        <div className="grid grid-cols-2 mt-20 ml-80">
+          <div className="card rounded-xl w-96 mb-8">
+            <div className="card-body"
+              style={{
+                backgroundImage: `url('/energyConsumption.jpg')`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}>
+              <h2 className="text-lg text-left mt-8 text-right"> Total Energy Consumed: </h2>
+              <h2 className="text-2xl text-left ml-48 mb-12"> 250 kw/hr </h2>
             </div>
           </div>
 
-          <div className="card rounded-xl w-96 mb-12" >
-            <div className="card-body my-12">
-              <h2 className="text-2xl text-center"> Total Expenses: </h2>
+          <div className="card rounded-xl w-96 mb-8" >
+            <div className="card-body"
+              style={{
+                backgroundImage: `url('/expense.jpg')`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}>
+              <h2 className="text-xl text-center ml-40 mt-12"> Total Expenses: </h2>
+              <h2 className="text-2xl text-center ml-40"> 20,000 </h2>
             </div>
           </div>
 
-          <div className="card rounded-xl w-96">
-            <div className="card-body my-12">
-              <h2 className="text-2xl text-center"> Total Tenant: </h2>
+          <div className="card rounded-xl w-96 mb-8">
+            <div className="card-body"
+              style={{
+                backgroundImage: `url('/tenant.jpg')`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}>
+              <h2 className="text-2xl text-center ml-52 mt-6"> Total Tenant: </h2>
+              <h2 className="text-3xl text-center ml-52 mb-16"> 545 </h2>
             </div>
           </div>
 
-          <div className="card rounded-xl w-96">
-            <div className="card-body my-12">
-              <h2 className="text-2xl text-center"> Total Property: </h2>
+          <div className="card rounded-xl w-96 mb-8">
+            <div className="card-body"
+              style={{
+                backgroundImage: `url('/property.jpg')`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}>
+              <h2 className="text-2xl text-center ml-32 mt-16"> Total Property: </h2>
+              <h2 className="text-2xl text-center ml-32 mb-16"> 50 </h2>
             </div>
           </div>
         </div>
 
         <div className="card rounded-xl ml-80 mr-64 mb-20">
-          <div className="card-body my-40">
-            <h2 className="text-2xl"> Total Property: </h2>
+          <div className="card-body"
+          style={{
+            backgroundImage: `url('/nav-bg.png')`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}>
+            <DashboardListTable />
           </div>
         </div>
       </div>
