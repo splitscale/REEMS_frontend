@@ -5,6 +5,7 @@ import AddTenantInformation from "./AddTenantInformation";
 import SearchPropertyInformation from "../PropertyInformation/SearchPropertyInformation";
 import EditTenantInformationButton from "./EditTenantInformation";
 import DeleteTenantInformationButton from "./DeleteTenantInformation";
+import ExportTenantInformation from "./ExportTenantInformation";
 
 export default function TenantInformationListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
@@ -56,7 +57,7 @@ export default function TenantInformationListTable() {
                 <SearchPropertyInformation onSearch={handleSearch} />
               </div>
               <div className="mr-4">
-                <Export />
+                <ExportTenantInformation />
               </div>
             </div>
           </div>

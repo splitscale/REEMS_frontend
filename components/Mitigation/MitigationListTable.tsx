@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Export from "../Export";
 import { Samp } from "../../lib/Samp";
 import AddMitigation from "./AddMitigation";
 import SearchMitigation from "./SearchMitigation";
 import EditMitigationButton from "./EditMitigation";
 import DeleteMitigationButton from "./DeleteMitigation";
+import ExportMitigation from "./ExportMitigation";
 
 
 export default function MitigationListTable() {
@@ -57,7 +57,7 @@ export default function MitigationListTable() {
                 <SearchMitigation onSearch={handleSearch} />
               </div>
               <div className="mr-4">
-                <Export />
+                <ExportMitigation />
               </div>
             </div>
           </div>

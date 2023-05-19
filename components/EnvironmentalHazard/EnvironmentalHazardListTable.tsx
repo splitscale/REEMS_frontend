@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import AddEnvironmentalHazard from "./AddEnvironmentalHazard";
 import EditEnvironmentalHazardButton from "./EditEnvironmentalHazard";
 import SearchEnvironmentalHazard from "./SearchEnvironmentalHazard";
-import Export from "../Export";
 import DeleteEnvironmentalHazardButton from "./DeleteEnvironmentalHazard";
 import { Samp } from "../../lib/Samp";
 import FilterEnvironmentalHazardCategory from "./FilterEnvironmentalHazardCategory";
+import ExportEnvironmentalHazard from "./ExportEnvironmentalHazard";
 
 export default function EnvironmentalHazardListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
@@ -78,7 +78,7 @@ export default function EnvironmentalHazardListTable() {
                 <SearchEnvironmentalHazard onSearch={handleSearch} />
               </div>
               <div className="mr-4">
-                <Export />
+                <ExportEnvironmentalHazard />
               </div>
             </div>
           </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Export from "../Export";
 import { Samp } from "../../lib/Samp";
 import AddPropertyInformation from "./AddPropertyInformation";
 import FilterPropertyName from "./FilterPropertyStatus";
 import SearchPropertyInformation from "./SearchPropertyInformation";
 import DeletePropertyInformationButton from "./DeletePropertyInformation";
 import EditPropertyInformation from "./EditPropertyInformation"
+import ExportPropertyInformation from "./ExportPropertyInformation";
 
 export default function PropertyInformationListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
@@ -77,7 +77,7 @@ export default function PropertyInformationListTable() {
                 <SearchPropertyInformation onSearch={handleSearch} />
               </div>
               <div className="mr-4">
-                <Export />
+                <ExportPropertyInformation />
               </div>
             </div>
           </div>

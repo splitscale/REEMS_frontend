@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Export from "../Export";
 import { Samp } from "../../lib/Samp";
 import AddExpense from "./AddExpense";
 import SearchExpense from "./SearchExpense";
 import EditExpenseButton from "./EditExpense";
 import DeleteExpenseButton from "./DeleteExpense";
+import ExportExpense from "./ExportExpense";
 
 export default function ExpenseListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
@@ -56,7 +56,7 @@ export default function ExpenseListTable() {
                 <SearchExpense onSearch={handleSearch} />
               </div>
               <div className="mr-4">
-                <Export />
+                <ExportExpense />
               </div>
             </div>
           </div>

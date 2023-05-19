@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Export from "../Export";
 import { Samp } from "../../lib/Samp";
 import AddEnergyConsumption from "./AddEnergyConsumption";
 import SearchEnergyConsumption from "./SearchEnergyConsumption";
 import EditEnergyConsumptionButton from "./EditEnergyConsumption";
 import DeleteEnergyConsumptionButton from "./DeleteEnergyConsumption";
+import ExportEnergyConsumption from "./ExportEnergyConsumption";
 
 export default function EnergyConsumptionListTable() {
   const [environmentalHazards, setEnvironmentalHazards] = useState<Samp[]>([]);
@@ -56,7 +56,7 @@ export default function EnergyConsumptionListTable() {
                 <SearchEnergyConsumption onSearch={handleSearch} />
               </div>
               <div className="mr-4">
-                <Export />
+                <ExportEnergyConsumption />
               </div>
             </div>
           </div>
