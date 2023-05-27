@@ -1,28 +1,39 @@
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
-import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
 export default function Login() {
   const router = useRouter()
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { user, login } = useAuth()
-  console.log(user)
-
   const handleLogin = async (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      await login(email, password)
-      router.push('/home')
+      const response = await fetch('http://localhost:8080/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      if (response.ok) {
+        // Login successful, redirect to /home
+        router.push('/home');
+      } else {
+        // Login failed, handle error
+        console.log('Login failed:', response.status);
+      }
     } catch (error) {
-      console.log(error)
+      console.log('Error:', error);
     }
-  }
+  };
 
   return (
     <div className="container-fluid"
@@ -71,9 +82,9 @@ export default function Login() {
                   <input
                     className="form-control border-secondary border-start-0"
                     type="text"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
 
@@ -97,11 +108,6 @@ export default function Login() {
                     className="btn btn-success mt-5 w-100 border border-secondary rounded-pill">
                     Login
                   </button>
-                </div>
-
-                <div className="text-center mt-2">
-                  Not registered?
-                  <Link href="/register"> Create an Account </Link>
                 </div>
               </form>
             </div>

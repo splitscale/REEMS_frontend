@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
 
 export default function Profile() {
-  const { user } = useAuth();
   const [imageSrc, setImageSrc] = useState("user-icon.png");
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -30,8 +28,8 @@ export default function Profile() {
       <div className="card mb-8">
         <div className="card-body bg-white">
           <div className="mt-4 my-8 mx-40 rounded-lg">
-            <p className="text-xl">Name: </p>
-            <p className="text-xl">Email Address: {user.email}</p>
+            <p className="text-xl">Username: Steve</p>
+            <p className="text-xl">Email Address: steve@gmail.com </p>
           </div>
         </div>
       </div>

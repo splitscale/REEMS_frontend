@@ -22,16 +22,10 @@ export default function NavBar() {
           Reems
         </span>
 
-      </div><div className="flex items-center ml-auto">
-        <Link className="relative" href={"/login"}>
+      </div><div className="flex items-center ml-auto mr-6">
+        <Link className="relative" href="/login">
           <button type="button" className="btn btn-light">
             Login
-          </button>
-        </Link>
-
-        <Link className="relative mx-8 mr-8" href={"/register"}>
-          <button type="button" className="btn btn-danger">
-            Sign up
           </button>
         </Link>
       </div>

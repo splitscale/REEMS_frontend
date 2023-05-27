@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Export from "../Export";
 import { Samp } from "../../lib/Samp";
 import AddTenantInformation from "./AddTenantInformation";
 import SearchPropertyInformation from "../PropertyInformation/SearchPropertyInformation";
