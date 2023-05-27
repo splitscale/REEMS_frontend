@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export default function Profile() {
   const [imageSrc, setImageSrc] = useState("user-icon.png");
+  const [username]= useState("admin")
+  const [password]= useState("admin")
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const reader = new FileReader();
@@ -28,8 +30,8 @@ export default function Profile() {
       <div className="card mb-8">
         <div className="card-body bg-white">
           <div className="mt-4 my-8 mx-40 rounded-lg">
-            <p className="text-xl">Username: Steve</p>
-            <p className="text-xl">Email Address: steve@gmail.com </p>
+            <p className="text-xl">Username: {username}</p>
+            <p className="text-xl">Password: {password} </p>
           </div>
         </div>
       </div>

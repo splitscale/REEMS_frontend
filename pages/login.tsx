@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function Login() {
-  const router = useRouter()
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,12 +24,12 @@ export default function Login() {
       });
 
       if (response.ok) {
-        // Login successful, redirect to /home
         const data = await response.json();
-        console.log(data); // Access the response data
+        console.log(data)
+
+        // Redirect to the profile page
         router.push('/home');
       } else {
-        // Login failed, handle error
         console.log('Login failed:', response.status);
       }
     } catch (error) {
