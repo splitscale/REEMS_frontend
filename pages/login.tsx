@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/api/v1/login', {
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,6 +25,8 @@ export default function Login() {
 
       if (response.ok) {
         // Login successful, redirect to /home
+        const data = await response.json();
+        console.log(data); // Access the response data
         router.push('/home');
       } else {
         // Login failed, handle error

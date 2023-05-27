@@ -1,16 +1,16 @@
-export default async function loginHandler(req: any, res: any) {
-  if (req.method !== "POST") {
-    res.status(405).json({ error: "Method Not Allowed" });
-    return;
-  }
+export default async function login(req: any, res: any) {
+  const url = "http://localhost:8080/api/v1/login";
 
   const { username, password } = req.body;
 
   try {
-    const response = await fetch("/api/login", {
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({
         username,

@@ -1,10 +1,10 @@
 import Head from 'next/head'
 
 import SideBar from '../components/SideBar'
-import EnvironmentalHazard from './environmentalHazard'
 import DashboardListTable from '../components/DashboardListTable'
 
 export default function Home() {
+  
   return (
     <div className="flex">
       <Head>
@@ -77,11 +77,11 @@ export default function Home() {
 
         <div className="card rounded-xl ml-80 mr-64 mb-20">
           <div className="card-body"
-          style={{
-            backgroundImage: `url('/nav-bg.png')`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}>
+            style={{
+              backgroundImage: `url('/nav-bg.png')`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+            }}>
             <DashboardListTable />
           </div>
         </div>
