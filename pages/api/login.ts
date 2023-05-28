@@ -20,7 +20,7 @@ export default async function login(req: any, res: any) {
 
     if (response.ok) {
       // Login successful, redirect to /home
-      res.status(200).json({ message: "Login successful" });
+      res.status(200).json({ message: "Login successful", username: {username} });
     } else {
       // Login failed, handle error
       res.status(response.status).json({ error: "Login failed" });

@@ -2,12 +2,35 @@ import { useState } from "react";
 
 export default function Profile() {
   const [imageSrc, setImageSrc] = useState("user-icon.png");
+  const [username] = useState("Jiv");
+  const [email] = useState("jivdelacruz@gmail.com");
 
-  function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
+  async function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files![0]);
-    reader.onload = () => {
+
+    reader.onload = async () => {
       setImageSrc(reader.result as string);
+
+      try {
+        const response = await fetch("http://localhost:8080", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            image: reader.result,
+          }),
+        });
+
+        if (response.ok) {
+          console.log("Image uploaded successfully");
+        } else {
+          console.log("Failed to upload image");
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
     };
   }
 
@@ -37,8 +60,8 @@ export default function Profile() {
       <div className="card mb-8">
         <div className="card-body bg-white">
           <div className="mt-4 my-8 mx-40 rounded-lg">
-            <p className="text-xl">Username: </p>
-            <p className="text-xl">Email: </p>
+            <p className="text-xl">Username: {username}</p>
+            <p className="text-xl">Email: {email}</p>
           </div>
         </div>
       </div>

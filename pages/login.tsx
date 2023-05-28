@@ -12,10 +12,10 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
+      const response = await fetch("/api/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username,
@@ -24,22 +24,27 @@ export default function Login() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        console.log(data)
+        const responseData = await response.json();
+        console.log(responseData);
 
-        // Redirect to the profile page
-        router.push('/home');
+        await router.push("/home");
       } else {
-        console.log('Login failed:', response.status);
+        console.log("Login failed:", response.status);
       }
     } catch (error) {
-      console.log('Error:', error);
+      console.log("Error:", error);
     }
   };
 
   return (
-    <div className="container-fluid"
-      style={{ backgroundImage: "url('/bg.jpg')", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}
+    <div
+      className="container-fluid"
+      style={{
+        backgroundImage: "url('/bg.jpg')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <Head>
         <title> REEMS </title>
@@ -49,8 +54,10 @@ export default function Login() {
 
       <div className="row">
         <div className="col-sm-6 col-md-5 m-auto">
-          <div className="card mb-52 mt-32" style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}>
-
+          <div
+            className="card mb-52 mt-32"
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
+          >
             <div className="card-body my-32 mx-16 ">
               <Image
                 src="/logo.png"
@@ -107,7 +114,8 @@ export default function Login() {
                 <div>
                   <button
                     type="submit"
-                    className="btn btn-success mt-5 w-100 border border-secondary rounded-pill">
+                    className="btn btn-success mt-5 w-100 border border-secondary rounded-pill"
+                  >
                     Login
                   </button>
                 </div>
