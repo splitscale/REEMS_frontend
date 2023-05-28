@@ -1,11 +1,11 @@
-import Head from "next/head";
-import SideBar from "../components/SideBar";
-import Profile from "../components/Profile";
-import SignOut from "../components/SignOut";
+import Head from 'next/head';
+import SideBar from '../components/SideBar';
+import Profile from '../components/Profile';
+import SignOut from '../components/SignOut';
+import { useEffect } from 'react';
 
 export default function Settings() {
   return (
-
     <div className="flex">
       <Head>
         <title>REEMS</title>
@@ -21,9 +21,9 @@ export default function Settings() {
         className="w-3/4 h-screen bg-cover bg-center"
         style={{
           backgroundImage: `url('/main-bg.jpg')`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          width: "100%",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          width: '100%',
         }}
       >
         <div className="d-flex align-items-center justify-content-center h-100">

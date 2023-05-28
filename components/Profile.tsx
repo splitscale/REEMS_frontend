@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+import { handleReadDataPersist } from '../lib/handlers/handleReadPersistedData';
+import { stored } from '../public/config/stored';
+import { ShieldUser } from '../lib/User/ShieldUser';
 
 export default function Profile() {
-  const [imageSrc, setImageSrc] = useState("user-icon.png");
-  const [username] = useState("Jiv");
-  const [email] = useState("jivdelacruz@gmail.com");
+  const [imageSrc, setImageSrc] = useState('user-icon.png');
+  const [username, setUsername] = useState('Jiv');
+  const [email, setEmail] = useState('jivdelacruz@gmail.com');
+
+  useEffect(() => {
+    const user = handleReadDataPersist<ShieldUser>(stored.key.user);
+
+    if (user) {
+      setUsername(user.displayName);
+      setEmail(user.email);
+    }
+
+    if (!user) alert('Something went wrong while loading the user profile');
+  }, []);
 
   async function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const reader = new FileReader();
@@ -13,10 +27,10 @@ export default function Profile() {
       setImageSrc(reader.result as string);
 
       try {
-        const response = await fetch("http://localhost:8080", {
-          method: "POST",
+        const response = await fetch('http://localhost:8080', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             image: reader.result,
@@ -24,12 +38,12 @@ export default function Profile() {
         });
 
         if (response.ok) {
-          console.log("Image uploaded successfully");
+          console.log('Image uploaded successfully');
         } else {
-          console.log("Failed to upload image");
+          console.log('Failed to upload image');
         }
       } catch (error) {
-        console.error("Error uploading image:", error);
+        console.error('Error uploading image:', error);
       }
     };
   }

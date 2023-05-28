@@ -1,21 +1,24 @@
-import Head from "next/head";
-import Image from "next/image";
-import { FormEvent, useState } from "react";
-import { useRouter } from "next/router";
+import Head from 'next/head';
+import Image from 'next/image';
+import { FormEvent, useState } from 'react';
+import Router from 'next/router';
+import { ShieldUser } from '../lib/User/ShieldUser';
+import { handleDataPersist } from '../lib/handlers/handleDataPersist';
+import { stored } from '../public/config/stored';
 
 export default function Login() {
-  const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
+      const response = await fetch('/api/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username,
@@ -23,16 +26,17 @@ export default function Login() {
         }),
       });
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData);
-
-        await router.push("/home");
-      } else {
-        console.log("Login failed:", response.status);
+      if (!response.ok) {
+        console.log('Login failed:', response.status);
       }
+
+      const responseData: ShieldUser = await response.json();
+
+      handleDataPersist(stored.key.user, responseData);
+
+      await Router.push('/home');
     } catch (error) {
-      console.log("Error:", error);
+      console.log('Login Error:', error);
     }
   };
 
@@ -41,9 +45,9 @@ export default function Login() {
       className="container-fluid"
       style={{
         backgroundImage: "url('/bg.jpg')",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <Head>
@@ -56,7 +60,7 @@ export default function Login() {
         <div className="col-sm-6 col-md-5 m-auto">
           <div
             className="card mb-52 mt-32"
-            style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}
           >
             <div className="card-body my-32 mx-16 ">
               <Image
@@ -65,7 +69,7 @@ export default function Login() {
                 alt="logo.png"
                 width={200}
                 height={200}
-                style={{ marginTop: "1rem", marginRight: "1rem" }}
+                style={{ marginTop: '1rem', marginRight: '1rem' }}
               />
 
               <div className="d-flex justify-content-center">
